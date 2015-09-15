@@ -1,0 +1,128 @@
+﻿ <div class="Receipt_information">
+            <!--填写发票顶部 start-->
+            <div class="ruretop_all">
+                <div class="ruretop">
+                    <img src="<%templateskin%>/images/shopping_car_img.jpg" width="93" height="33" style="margin-left: 0" />
+                    <img src="<%templateskin%>/images/green.jpg" width="281" height="6" style="padding-top: 15px" />
+                    <img src="<%templateskin%>/images/sure_order_img.jpg" width="104" height="34" />
+                    <img src="<%templateskin%>/images/gray.jpg" width="281" height="6" style="padding-top: 15px" />
+                    <img src="<%templateskin%>/images/pay.jpg" width="104" height="34" />
+                </div>
+                <div class="ruretop_close" onclick="close_shopping()">
+                </div>
+            </div>
+            <!--填写发票 顶部 end-->
+            <!--填写发票 内容start-->
+            <div class="rurecontent">
+                <dl>
+                    <dt>随货单据
+                        <input name="sex" type="radio" class="input" value="male" />
+                        <label>
+                            清单+收据</label>
+                        <input name="sex" type="radio" class="input" value="male" />
+                        <label>
+                            清单+发票</label>
+                    </dt>
+                    <dd style="height: 512px">
+                        <ul class="sure_order3_ul">
+                            <li>
+                                <div class="sure_order3_content_left">
+                                    发票抬头</div>
+                                <div class="sure_order_content_right">
+                                    <p>
+                                        <input name="sex" type="radio" class="input" value="male" />
+                                        <label>
+                                            个人</label>
+                                        <input type="text" value="" class="sure_order3_input" />
+                                    </p>
+                                    <p>
+                                        <input name="sex" type="radio" class="input" value="male" />
+                                        <label>
+                                            单位</label>
+                                        <input type="text" value="" class="sure_order3_input" style="width: 583px;" />
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="sure_order3_content_left">
+                                    发票内容</div>
+                                <div class="sure_order_content_right">
+                                    <p>
+                                        <input name="sex" type="radio" class="input" value="male" />
+                                        <label>
+                                            办公用品</label>
+                                    </p>
+                                    <p>
+                                        <input name="sex" type="radio" class="input" value="male" />
+                                        <label>
+                                            其他</label>
+                                        <input type="text" value="" class="sure_order3_input" />
+                                    </p>
+                                </div>
+                            </li>
+                            <li style="border-bottom: none; height: 69px">
+                                <div class="sure_order3_content_left">
+                                    发票类型</div>
+                                <div class="sure_order_content_right">
+                                    <p>
+                                        <input name="sex" type="radio" class="input" value="male" />
+                                        <label>
+                                            增值税发票</label>
+                                    </p>
+                                    <p>
+                                        <input name="sex" type="radio" class="input" value="male" />
+                                        <label>
+                                            普通发票</label>
+                                    </p>
+                                </div>
+                            </li>
+                            <li style="border-bottom: none; padding: 0; height: 188px">
+                                <div class="sure_order3_content_left" style="height: 188px">
+                                    开票信息</div>
+                                <div class="sure_order_content_right last">
+                                    <p>
+                                        <label>
+                                            增值纳税人识别号</label>
+                                        <input type="text" value="" class="sure_order3_input" />
+                                    </p>
+                                    <p>
+                                        <label>
+                                            增值纳税人识别号</label>
+                                        <input type="text" value="" class="sure_order3_input" />
+                                    </p>
+                                    <p>
+                                        <label>
+                                            增值纳税人识别号</label>
+                                        <input type="text" value="" class="sure_order3_input" />
+                                    </p>
+                                    <p>
+                                        <label>
+                                            增值纳税人识别号</label>
+                                        <input type="text" value="" class="sure_order3_input" />
+                                    </p>
+                                    <p>
+                                        <label>
+                                            增值纳税人识别号</label>
+                                        <input type="text" value="" class="sure_order3_input" />
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </dd>
+                </dl>
+
+            </div>
+            <!--填写发票 内容end-->
+            <!--填写发票 底部 start-->
+            <div class="rurebottom">
+                <div class="rurebottom_main">
+                    <a href="javascript:;" onclick="close_shopping()" style="background: url('<%templateskin%>/images/continue_shopping.jpg') no-repeat;">
+                    </a><a href="javascript:;" onclick="Receipt_to_surepay()" style="float: right; background: url('<%templateskin%>/images/accounts.jpg') no-repeat;">
+                    </a>
+                    <div class="rurebottom_main_price">
+                        配送运费：<span style="color: #f03; margin-right: 23px">￥84.00</span>&nbsp;<span style="font-size: 20px;
+                            color: #f03">总计：￥333.00</span></div>
+                </div>
+            </div>
+            <!--填写发票 底部 end-->
+        </div>

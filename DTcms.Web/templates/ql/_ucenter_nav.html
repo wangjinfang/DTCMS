@@ -1,0 +1,46 @@
+﻿<div class="hmleft">
+				<div class="hmlefttop">
+					<dl>
+						<dt>
+                        <%if(userModel.avatar!="")%>
+                        <img src="{userModel.avatar}" width="51px" height="51px" alt="{userModel.user_name}">
+                        <%else%>
+                        <img src="<%templateskin%>/images/user_avatar.png" alt="求真像" width="51px" height="51px"/>
+                        <%/if%>
+                        </dt>
+						<dd>
+							<span>{userModel.user_name}</span>
+							<strong><%if userModel.user_type==1%>普通客户<%else%>企业客户<%/if%></strong>
+						</dd>
+					</dl>
+				</div>
+				<div class="hmleftbottom">
+                    <dl <%csharp%>if(action=="tg" || action=="order" || action=="book"){<%/csharp%>class="hmon"<%csharp%>}<%/csharp%>>
+						<a href="<%linkurl("usercenter","order")%>"><dt><img src="<%templateskin%>/images/beihuolist.png" width="34px" height="34px" alt="我的订单"></dt>
+						<dd>订单管理</dd></a>
+					</dl>
+
+                    <dl <%csharp%>if(action=="money" || action=="point" || action=="coupons"){<%/csharp%>class="hmon"<%csharp%>}<%/csharp%>>
+						<a href="<%linkurl("usercenter","money")%>"><dt><img src="<%templateskin%>/images/house.png" width="34px" height="34px" alt="我的账户"></dt>
+						<dd>我的账户</dd></a>
+					</dl>
+
+                    <dl <%csharp%>if(action=="collect" || action=="history"){<%/csharp%>class="hmon"<%csharp%>}<%/csharp%>>
+						<a href="<%linkurl("usercenter","collect")%>"><dt><img src="<%templateskin%>/images/shoucang.png" width="34px" height="34px" alt="我的收藏"></dt>
+						<dd>我的收藏</dd></a>
+					</dl>
+
+					<dl <%csharp%>if(action=="" || action=="info" || action=="address" || action=="pwd" || action=="ticket"){<%/csharp%>class="hmon"<%csharp%>}<%/csharp%>>
+						<a href="<%linkurl("usercenter","info")%>"><dt><img src="<%templateskin%>/images/hmuser.png" width="34px" height="34px" alt="用户管理"></dt>
+						<dd>用户管理</dd></a>
+					</dl>
+
+                     
+                    <%if userModel.user_type==2%>
+					<dl <%csharp%>if( action.IndexOf("branch")>-1 || action.IndexOf("staff")>-1){<%/csharp%>class="hmon"<%csharp%>}<%/csharp%>>
+						<a href="<%linkurl("usercenter","staff_list")%>"><dt><img src="<%templateskin%>/images/kehuguanli.png" width="34px" height="34px" alt="账号分配"></dt>
+						<dd>账号分配</dd></a>
+					</dl>
+                    <%/if%>
+				</div>
+			</div>

@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>商品详情 - {config.webname} - 性价比最高的办公用品商城</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+    <link rel="stylesheet" type="text/css" href="<%templateskin%>/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="<%templateskin%>/css/proshow.css" />
+     <script type="text/javascript" src="<%templateskin%>/js/jquery-1.10.2.min.js"></script>
+     <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.form.min.js"></script> 
+    <script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script> 
+    <script src="<%templateskin%>/js/nan.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            
+            //获得文本框对象
+            var t = $("#text_box");
+            //数量增加操作
+            $("#add").click(function () {
+                t.val(parseInt(t.val()) + 1)
+                if (parseInt(t.val()) != 1) {
+                    $('#min').attr('disabled', false);
+                }
+                setTotal();
+            })
+            //数量减少操作
+            $("#min").click(function () {
+                t.val(parseInt(t.val()) - 1);
+                if (parseInt(t.val()) == 1) {
+                    $('#min').attr('disabled', true);
+                }
+                setTotal();
+            })
+            //计算操作
+            function setTotal() {
+                $("#total").html((parseInt(t.val()) * 3.95).toFixed(2)); //toFixed()是保留小数点的函数很实用哦
+            }
+            //初始化
+            setTotal();
+        });
+
+        function get_img(big_img,obj) {
+            $(obj).parent().addClass("current").siblings().removeClass("current");
+            //$("#big_img").prop("src", big_img);
+            $(".jqzoom").html("<img id=\"big_img\" src=\""+big_img+"\" alt=\"\" class=\"pro_bigimg\"  onload=\"img_load()\" />")
+        }
+
+        function img_load() {
+            //465 500
+//           var old_height = $("#big_img").height();
+//           var old_width = $("#big_img").width();
+//           var new_height = 0;
+//           var new_width = 0;
+//           if (old_height > old_width) {
+//               new_width = old_height / 500 * old_width;
+//               new_height = 500;
+//               if (new_width > 465) {
+//                   new_height = new_width / 465 * 500;
+//                   new_width = 465;
+//               }
+//           }
+//           else {
+//               new_height = old_width / 465 * old_height;
+//               new_width = 465;
+//               if (new_height > 500) {
+//                   new_width = new_height / 500 * 465;
+//                   new_height = 500;
+//               }
+//           }
+            //           $("#big_img").css({ width: new_width, height: new_height });
+            var imgW = $("#big_img").width();
+            var imgH = $("#big_img").height();
+            if (imgW > 465 || imgH > 500) {
+                var ratioA = imgW / 465;
+                var ratioB = imgH / 500;
+                if (ratioA > ratioB) {
+                    imgW = 465;
+                    imgH = 465 * (imgH / imgW);
+                }
+                else {
+                    imgH = 500;
+                    imgW = 500 * (imgW / imgH);
+                } 
+                $("#big_img").css({ width: imgW, height: imgH })
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--顶部 start-->
+    <%template src="_header.html"%>
+    <!--顶部 end-->
+    <div class="wrapper">
+        <div class="clearfix">
+            <div class="pro_img_box">
+                <ul>
+                    <%csharp%>
+                    string first_img=""; int flag=0;
+                    <%/csharp%>
+                    <%if(model.albums!=null)%>
+                    <%foreach(DTcms.Model.article_albums modelt in model.albums)%>
+                    <%csharp%>
+                    if(flag==0){first_img=modelt.original_path;} flag++;
+                    <%/csharp%>
+                    <li <%if flag==1%>class="current"<%/if%>><a href="javascript:;" onclick="get_img('{modelt.original_path}',this)">
+                        <img bimg="{modelt.original_path}" src="{modelt.thumb_path}" /></a></li>
+                    <%/foreach%>
+                    <%/if%>
+                </ul>
+                <div class="pro_bigimg_show" style="height: 500px;display: table;">
+                    <a href="{first_img}" class="jqzoom" style="display: table-cell;vertical-align: middle;" title="{model.title}">
+                        <img id="big_img" src="{first_img}" alt="" class="pro_bigimg" onload="img_load()" />
+                    </a>
+                </div>
+            </div>
+            <div class="pro_info">
+                <h1>
+                    {model.title}</h1>
+                <div class="price clearfix">
+                    <span class="l">
+                    <p><span>销售价：</span><span class="now_price" id="new_span_sell" style=" float:none;">￥{model.fields[sell_price]}</span>
+                        <img src="<%templateskin%>/images/sale.gif" alt="" class="sale_icon" style=" display:none;" /><span><a href="" style=" display:none;">活动详情</a></span></p>
+
+                        <p><span>原价：</span><span class="or_price" style=" float:none;">￥{model.fields[sell_price]}</span></p>
+
+                         <p><span>销量:</span><span >{order_sum} 件</span> </p>
+                         
+                            
+                </div>
+                 
+                <div class="options">
+
+                <%loop dr_standard dt_standard%>
+                    <p name="strandard_title">{dr_standard[title]}：</p>
+                    
+                    <p>
+                    <%csharp%>
+                    if(dr_standard["value"]!=null && !string.IsNullOrEmpty(dr_standard["value"].ToString()))
+                    {
+                    string[] str_standard_value=dr_standard["value"].ToString().Split(',');
+                    foreach(string str in str_standard_value)
+                    {
+                    string strandard_value_id="0";
+                    string strindard_value_str="";
+                    if(str.Split('|').Length==2)
+                    { 
+                    strandard_value_id=str.Split('|')[0];
+                    strindard_value_str=str.Split('|')[1];
+                    <%/csharp%>
+                    <a href="javascript:;" name="a_standard_value" onclick="new_check_standard(this,'{model.id}','{strandard_value_id}')">
+                    {strindard_value_str}
+                    <input type="checkbox" name="new_ck_standard" value="{dr_standard[id]}|{strandard_value_id}" style=" display:none;"  />
+                    </a>
+                    <%csharp%> 
+                    }
+                    }
+                    }
+                    <%/csharp%>
+                    </p>
+                    <%/loop%>
+
+
+                        <%if dt_unit!=null && dt_unit.Rows.Count>0 %>
+                        <p>单位：</p>
+                        <p>
+                        <%loop dr_unit dt_unit%>
+                        <a href="javascript:;" name="new_rd_unit" onclick="new_check_unit('{model.id}','{dr_unit[id]}',this)">{dr_unit[title]}<%if dr_unit["content"]!=null && dr_unit["content"].ToString()!=""%>({dr_unit[content]})<%/if%>
+                        
+                        </a> 
+                        <%/loop%>
+                        </p>
+                        <%/if%>
+
+                </div>
+                <div class="number">
+                    数量：
+                    <input id="min" name="" type="button" value="-" />
+                    <input id="text_box" name="" type="text" value="1" />
+                    <input id="add" name="" type="button" value="+" />
+                </div>
+                <div class="buy clearfix">
+                    <div class="shopping_cart">
+                        <a href="javascript:;" id="a_submit" onclick="new_add_car()">加入购物车</a>
+                    </div>
+                    <div class="keep">
+                        <a href="javascript:;" onclick="Submit4('{model.id}')">收藏</a>
+                    </div>
+                    <div class="qr">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collocation_box">
+            <div class="tab">
+                <ul>
+                    
+                    <li class="current" onclick="new_ck_meal(this,'div_red','div_meal')">教你搭配</li>
+                    <li  onclick="new_ck_meal(this,'div_meal','div_red')">解决方案</li>
+                </ul>
+            </div>
+
+
+
+<!--------------------------------------------kljhkljhlkjh------------------------------------->
+
+
+            <div class="content" style=" width:980px; display:none;" id="div_meal">
+                <div class="case">
+                <%loop dr_meal dt_meal%>
+                    <a href="javascript:;" onclick="new_get_meal_good({dr_meal[id]},{model.id})">{dr_meal[title]}</a>
+                    <%/loop%>
+                </div>
+                <div class="clearfix">
+                <ul class="clearfix" id="meal_one_good">
+                <%if dt_meal_good!=null && dt_meal_good.Rows.Count>0%>
+                <%loop dr_meal_good1 dt_meal_good%>
+                <%if Convert.ToInt32(dr_meal_good1["good_id"])!=model.id%><%continue%><%/if%>
+                <li style="background: url(<%templateskin%>/images/icon_add.png) no-repeat right 30px;">
+                            <p>
+                                <a href="<%linkurl("good_show",{dr_meal_good1[good_id]})%>">
+                                    <img src="{dr_meal_good1[img_url]}" /></a></p>
+                            <p>
+                                <a href="<%linkurl("good_show",{dr_meal_good1[good_id]})%>" title="{dr_meal_good1[all_title]}"><%cutstring({dr_meal_good1[all_title]},14)%></a></p>
+                            <p class="price">
+                                <input type="checkbox" name="new_ck_meal_good_price" checked="checked" onclick="new_sum_ck_meal_good_price()" value="{dr_meal_good1[meal_id]}|{dr_meal_good1[good_id]}" price="{dr_meal_good1[price]}"/>￥{dr_meal_good1[price]}</p>
+                        </li>
+                        <%if Convert.ToInt32(dr_meal_good1["good_id"])==model.id%><%break%><%/if%>
+                <%/loop%>
+                <%else%>
+                <li style="background: url(<%templateskin%>/images/icon_add.png) no-repeat right 30px;">
+                            <p>
+                                <a href="<%linkurl("good_show",{model.id})%>">
+                                    <img src="{model.img_url}" /></a></p>
+                            <p>
+                                <a href="<%linkurl("good_show",{model.id})%>" title="{model.title}"><%cutstring({model.title},14)%></a></p>
+                            <p class="price">
+                                <input type="checkbox" name="new_ck_meal_good_price" checked="checked" onclick="new_sum_ck_meal_good_price()" value="0|{model.id}" price="{model.fields[sell_price]}"/>￥{model.fields[sell_price]}</p>
+                        </li>
+                <%/if%>
+
+                </ul>
+                <div style="width:600px; height: 200px;overflow: scroll;overflow-y: hidden; float:left">
+                <%csharp%>
+                    decimal meal_price=0;
+                    int li_count=(dt_meal_good.Rows.Count-1)*150;
+                    <%/csharp%>
+                    <ul class="clearfix" style="width:{li_count}px;" id="meal_list_good">
+                    
+
+
+                    <%loop dr_meal_good dt_meal_good%>
+                    <%csharp%>
+                    meal_price+=Convert.ToDecimal(dr_meal_good["price"]);
+                    <%/csharp%> 
+                    <%if Convert.ToInt32(dr_meal_good["good_id"])==model.id%><%continue%><%/if%>
+
+                    
+                        <li style="<%if dt_meal_good.Rows.Count==dr_meal_good__loop__id-1%>background: none;<%/if%>height: 150px;">
+                            <p>
+                                <a href="<%linkurl("good_show",{dr_meal_good[good_id]})%>">
+                                    <img src="{dr_meal_good[img_url]}" /></a></p>
+                            <p>
+                                <a href="<%linkurl("good_show",{dr_meal_good[good_id]})%>" title="{dr_meal_good[all_title]}"><%cutstring({dr_meal_good[all_title]},14)%></a></p>
+                            <p class="price">
+                                <input type="checkbox" name="new_ck_meal_good_price" checked="checked" onclick="new_sum_ck_meal_good_price()" value="{dr_meal_good[meal_id]}|{dr_meal_good[good_id]}"  price="{dr_meal_good[price]}"/>￥{dr_meal_good[price]}</p>
+                        </li>
+                        <%/loop%>
+                    </ul>
+                    </div>
+                    <div class="amount">
+                        <p class="red">
+                            购买人气组合</p>
+                        <p>
+                            总价：<span class="red" style="font-size: 14px" id="new_b_red_price1">￥{meal_price}</span></p>
+                        <p>
+                            <a href="javascript:;" onclick="new_meal_into_shopping()" id="a_meal_shopping">
+                                <img src="<%templateskin%>/images/buyzh_btn.jpg" alt="" /></a></p>
+                    </div>
+                </div>
+            </div>
+
+
+<!--------------------------------------------------------------------------------->
+
+
+
+
+
+
+             <div class="content" style=" width:980px; " id="div_red">
+                <div class="case">
+                <%loop dr_red dt_red%>
+                    <a href="javascript:;" onclick="new_get_red_good({dr_red[id]},{model.id})">{dr_red[title]}</a>
+                    <%/loop%>
+                </div>
+                <div class="clearfix">
+                <ul class="clearfix" id="red_one_good">
+                <%if dt_red_good!=null && dt_red_good.Rows.Count>0%>
+                <%loop dr_red_good1 dt_red_good%>
+                <%if Convert.ToInt32(dr_red_good1["good_id"])!=model.id%><%continue%><%/if%>
+                <li style="background: url(<%templateskin%>/images/icon_add.png) no-repeat right 30px;">
+                            <p>
+                                <a href="<%linkurl("good_show",{dr_red_good1[good_id]})%>">
+                                    <img src="{dr_red_good1[img_url]}" /></a></p>
+                            <p>
+                                <a href="<%linkurl("good_show",{dr_red_good1[good_id]})%>" title="{dr_red_good1[all_title]}"><%cutstring({dr_red_good1[all_title]},14)%></a></p>
+                            <p class="price">
+                                <input type="checkbox" name="new_ck_red_good_price" checked="checked" onclick="new_sum_ck_red_good_price()" value="{dr_red_good1[meal_id]}|{dr_red_good1[good_id]}" price="{dr_red_good1[price]}"/>￥{dr_red_good1[price]}</p>
+                        </li>
+                        <%if Convert.ToInt32(dr_red_good1["good_id"])==model.id%><%break%><%/if%>
+                <%/loop%>
+                <%else%>
+                <li style="background: url(<%templateskin%>/images/icon_add.png) no-repeat right 30px;">
+                            <p>
+                                <a href="<%linkurl("good_show",{model.id})%>">
+                                    <img src="{model.img_url}" /></a></p>
+                            <p>
+                                <a href="<%linkurl("good_show",{model.id})%>" title="{model.title}"><%cutstring({model.title},14)%></a></p>
+                            <p class="price">
+                                <input type="checkbox" name="new_ck_red_good_price" checked="checked" onclick="new_sum_ck_red_good_price()" value="0|{model.id}" price="{model.fields[sell_price]}"/>￥{model.fields[sell_price]}</p>
+                        </li>
+                <%/loop%>
+                </ul>
+                <div style="width:600px; height: 200px;overflow-x: overlay; float:left"><%csharp%>
+                    decimal red_price=Convert.ToDecimal(model.fields["sell_price"]);
+                    int li_count1=(dt_red_good.Rows.Count-1)*150;
+                    <%/csharp%>
+                    <ul class="clearfix" style="width:{li_count1}px;" id="red_list_good">
+                    
+
+
+                    <%loop dr_red_good dt_red_good%>
+                    <%if Convert.ToInt32(dr_red_good["good_id"])==model.id%><%continue%><%/if%>
+
+                    <%csharp%>
+                    red_price+=Convert.ToDecimal(dr_red_good["price"]);
+                    <%/csharp%> 
+                        <li style="<%if dt_red_good.Rows.Count==dr_red_good__loop__id-1%>background: none;<%/if%>height: 150px;">
+                            <p>
+                                <a href="<%linkurl("good_show",{dr_red_good[good_id]})%>">
+                                    <img src="{dr_red_good[img_url]}" /></a></p>
+                            <p>
+                                <a href="<%linkurl("good_show",{dr_red_good[good_id]})%>" title="{dr_red_good[all_title]}"><%cutstring({dr_red_good[all_title]},14)%></a></p>
+                            <p class="price">
+                                <input type="checkbox" name="new_ck_red_good_price" checked="checked" onclick="new_sum_ck_red_good_price()" value="{dr_red_good[meal_id]}|{dr_red_good[good_id]}" price="{dr_red_good[price]}"/>￥{dr_red_good[price]}</p>
+                        </li>
+                        <%/loop%>
+                    </ul>
+                    </div>
+                    <div class="amount">
+                        <p class="red">
+                            购买人气组合</p>
+                        <p>
+                            总价：<span class="red" style="font-size: 14px" id="new_b_red_price2">￥{red_price}</span></p>
+                        <p>
+                            <a href="javascript:;" onclick="new_red_into_shopping()" id="a_red_shopping">
+                                <img src="<%templateskin%>/images/buyzh_btn.jpg" alt="" /></a></p>
+                    </div>
+                </div>
+            </div>
+
+
+<!--------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="pro_show_l">
+            <div class="pro_show_box l_box">
+                <div class="title">
+                    {parent_category_title}
+                </div>
+                <ul class="lb_list clearfix">
+                <%loop dr_category dt_category%>
+                    <li><a href="<%linkurl("goods_list",{dr_category[id]})%>">{dr_category[title]}</a></li>
+                    <%/loop%> 
+                </ul>
+            </div>
+            <div class="pro_show_box l_box">
+                <div class="title">
+                    浏览了该商品的用户还购买了
+                </div>
+                <ul class="other_pro">
+                <%loop dr_other_goods dt_other_goods%>
+                    <li><a href="<%linkurl("good_show",{dr_other_goods[id]})%>">
+                        <p>
+                            <img src="{dr_other_goods[img_url]}" /></p>
+                        <p>
+                            {dr_other_goods[title]}</p>
+                        <p class="price">
+                            ￥{dr_other_goods[sell_price]}</p>
+                    </a></li>
+                    <%/loop%>
+                </ul>
+            </div>
+            <script type="text/javascript" src="/plugins/advert/advert_js.ashx?id=11"></script>
+            <script type="text/javascript" src="/plugins/advert/advert_js.ashx?id=12"></script>
+        </div>
+        <div class="pro_show_r">
+            <div class="pro_show_box r_box">
+                <div class="title">
+                    商品参数
+                </div>
+                <ul class="parameter clearfix">
+                <%loop dr_property dt_property%>
+                    <li><span>{dr_property[title]}：</span>{dr_property[value]}</li>
+                    <%/loop%> 
+                </ul>
+            </div>
+            <div class="pro_show_box r_box">
+                <div class="title">
+                    商品标签
+                </div>
+                <ul class="parameter clearfix" style=" padding:10px 5px;">
+                <%loop dr_tag dt_tag%>
+                    <li style="padding: 7px 12px;margin: 0 5px 0 0;background: #a4a4a4;color: #fff;">{dr_tag[title]}</li>
+                    <%/loop%> 
+                </ul>
+            </div>
+            <div class="pro_show_box r_box">
+                <div class="title">
+                    商品详情
+                </div>
+                <div class="pro_show_info">
+                   {model.content}
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="new_hd_good_id" value="{model.id}" />
+    <input type="hidden" id="new_unit_id" value="0" />
+    <%template src="_footer.html"%>
+</body>
+</html>
+    

@@ -1,0 +1,75 @@
+﻿ <div class="Product_detail">
+            <!--商品详情 顶部 start-->
+            <div class="Product_detail_top">
+                <img onclick="close_shopping()" src="<%templateskin%>/images/close_detail.jpg" width="14" height="17"></div>
+            <!--商品详情 顶部 end-->
+            <!--商品详情 内容 start-->
+            <div class="Product_detail_main">
+                <div class="Product_detail_main_left">
+                    <ul id="ul_picture"> 
+
+                    </ul>
+                </div>
+                <div class="Product_detail_main_bigimg" id="div_big_img" style=" text-align:center;">
+                    <img id="img_big" src="<%templateskin%>/images/load.gif" width="472" height="472"/></div>
+                <div class="Product_detail_main_right">
+                    <div class="Product_detail_main_title" id="div_title">
+                        </div>
+                    <div class="Product_detail_main_price">
+                        <div class="Product_detail_main_price_left">
+                            <p>
+                                原价：<span id="span_sell">￥</span></p>
+                            <p style=" display:none;">
+                                原价：<del id="del_market"></del></p>
+                        </div>
+                        <div class="Product_detail_main_price_right" style=" display:none;">
+                            <span>春节促销</span> <a href="#">活动详情</a></div>
+                        <div class="Product_detail_main_select" id="div_standard">
+                        </div>
+                        <div class="Product_detail_main_count">
+                            <span style="float: left">数量：</span>
+                            <div class="Procurement_list_li_bottom" style="margin: auto; width: 80px;">
+                                <img class="reduce_btn" src="<%templateskin%>/images/reduce.jpg" width="14" height="14" onclick="change_sum('inputCount1',-1)" />
+                                <input type="text" id="inputCount1" value="1" name="" />
+                                <input type="hidden" id="hd_stock_quantity" value="0" />
+                                <img class="add_btn" src="<%templateskin%>/images/add.jpg" width="14" height="14" onclick="change_sum('inputCount1',1)"/></div>
+                        </div>
+                        <div class="Product_detail_main_explain">
+                            <dl>
+                                <dt>选项说明：</dt>
+                                <dd>请认真选择您想要的规格,没有则不选</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sold">
+                <dl>
+                    <dt>已售出：</dt>
+                    <dd id="dd_order_good_count">
+                        0件</dd>
+                </dl>
+            </div>
+            <!--商品详情 内容 end-->
+            <!--商品详情 底部 start-->
+            <div class="Product_detail_main_bottom">
+                <ul>
+                    <li><a href="javascript:;" style="background: url('<%templateskin%>/images/detail_bottom_product.jpg') no-repeat 21px 19px #ff572a;
+                        color: #fff;">商品</a> </li>
+                    <li name="li_good_meal"><a href="javascript:;" style="background: url('<%templateskin%>/images/detail_bottom_collocation.jpg') no-repeat 21px 19px;">
+                        搭配</a> </li>
+                    <li><a href="javascript:;" style="background: url('<%templateskin%>/images/detail_bottom_detail.jpg') no-repeat 21px 19px;">
+                        详情</a> </li>
+                    <li><a href="javascript:;" style="background: url('<%templateskin%>/images/activity.jpg') no-repeat 8px 19px;
+                        padding-left: 25px; width: 82px">活动& 推荐</a> </li>
+                </ul>
+                <div class="Product_detail_bottom_right">
+                    <div class="add_car">
+                    <input type="hidden" id="hd_goods" value="" />
+                        <a href="javascript:;" onclick="add_car()">放入购物车</a> 
+                        </div>
+                    <div class="detail_collect">
+                        <a href="#">收藏</a><span class="top_tip">1</span></div>
+                </div>
+            </div>
+        </div>

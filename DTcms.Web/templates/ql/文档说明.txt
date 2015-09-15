@@ -1,0 +1,19 @@
+    备货部门-----2----- 备货录入（Orderentry.html），备货清单(Orderlist.html)
+    送货部门-----2----- 送货录入（Sendentry.html）,送货清单(Sendlist.html)
+      业务员-----2----- 客户管理（Cusmanager.html），业务订单汇总（Ordersum.html）
+员工采购后台-----3----- 售后采购清单(Prolist.html),采购清单已通过(Prolisttg.html)，采购清单被驳回(Prolistbh.html)
+    企业后台-----8----- 部门管理（Depmanager.html）,企业添加员工(Addstaff.html),企业现金账户(Qicashaccount.html),企业自动生成账号(Zdaccount.html),账户分配内页(Fenpeipage.html),账户分配（Accountfenpei.html），现金账户（Cashaccount.html）,企业用户信息管理(Qiyeuser.html)
+普通客户管理-----11-----礼券账户(Liquanaccount.html),现金账户（Pucashaccount.html）,站内消息（Newsstation.html）,密码修改（Passwordxg.html）,普通用户信息管理（Putonguser.html）,收藏的商品（Collectiongoods.html），收货地址(Shouaddress.html)，积分账户（Creditaccount.html）,我的订单（Mydingdan.html）,预定商品（Browsegoods.html）,浏览商品(Schedulegoods.html)
+
+
+以上引用的是styletwo.css样式
+------------------------------------
+
+
+help_center.html，Index.html，Procurement_list.html，User_login.html，User_Register.html
+以上引用的是style.css样式
+----------------------------------------------------------------------------------------
+
+
+
+团队订单，开票管理

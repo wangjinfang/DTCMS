@@ -1,0 +1,97 @@
+﻿ <form id="form_pay">
+ <div class="sure_pay">
+            <!--确认付款 顶部 start-->
+            <div class="ruretop_all">
+                <div class="ruretop">
+                    <img src="<%templateskin%>/images/shopping_car_img.jpg" width="93" height="33" style="margin-left: 0" />
+                    <img src="<%templateskin%>/images/green.jpg" width="281" height="6" style="padding-top: 15px" />
+                    <img src="<%templateskin%>/images/sure_pay_green.jpg" width="104" height="34" />
+                    <img src="<%templateskin%>/images/green.jpg" width="281" height="6" style="padding-top: 15px" />
+                    <img src="<%templateskin%>/images/sure_pay_rec.jpg" width="104" height="34" />
+                </div>
+                <div class="ruretop_close" onclick="close_shopping()">
+                </div>
+            </div>
+            <!--确认付款  顶部 end-->
+            <!--确认付款  内容start-->
+            <div class="sure_pay_center">
+                <div class="sure_pay_main">
+                    <div class="sure_pay_main_top">
+                        您的订单已确认, <span style="margin-left: 26px">订单号：<span style="color: #000054" id="span_orderno"></span></span><span
+                            style="margin-left: 38px">应付金额：<span style="font-size: 22px; color: #000054" id="span_paymoney"></span>RMB</span></div>
+                    <div class="sure_pay_main_main">
+                        <dl>
+                            <dt>请选择支付方式</dt>
+                             <%set DTcms.Model.users shopping_user=GetUserInfo()%> 
+                             <%csharp%>
+                            if (shopping_user!=null && shopping_user.user_type==1 && shopping_user.parent_id>0){
+                            <%/csharp%>
+                            <dd style="height: 59px;">
+                                <div class="sure_pay_main_left">
+                                    <input type="radio" name="pay_type" class="sure_pay_main_left_radiobutton" value="is_up">
+                                    上报
+                                </div>
+                                <div class="sure_pay_main_right">
+                                   
+                                    <p>
+                                        <img src="<%templateskin%>/images/exclamatory.gif" width="13" height="13" />（您的当前余额为：<font name="f_money"></font>元）</p>
+                                </div>
+                            </dd>
+                            <%csharp%>
+                            }else if (shopping_user!=null && shopping_user.user_type==2){
+                            <%/csharp%> 
+                             <dd style="height: 59px; display:none;">
+                                <div class="sure_pay_main_left">
+                                    <input type="radio" name="pay_type" class="sure_pay_main_left_radiobutton" value="month">
+                                    月底结算
+                                </div>
+                                <div class="sure_pay_main_right">
+                                    <p>
+                                        <img src="<%templateskin%>/images/exclamatory.gif" width="13" height="13" />（您的当前余额为：<font name="f_money"></font>元）</p>
+                                </div>
+                            </dd>
+                            <%csharp%>
+                            }
+                            <%/csharp%>
+
+                            <dd style=" height:264px;">
+                                <div class="sure_pay_main_left">
+                                    <input type="radio" name="pay_type" class="sure_pay_main_left_radiobutton" checked="checked" value="payno">
+                                    支付
+                                </div>
+                                <div class="sure_pay_main_right">
+                                    <p>
+                                        <img src="<%templateskin%>/images/exclamatory.gif" width="13" height="13" />（您的当前余额为：<font name="f_money"></font>元）</p>
+                                    <div class="pay_ways">
+                                        <p>
+                                            请选择支付方式支付</p>
+                                        <ul style="margin-bottom: 0">
+                                        <%set DataTable dt_pay=get_payment_list(0, "is_lock=0")%> <!--取得一个DataTable-->
+                                          <%loop dr_pay dt_pay%>
+                                          <%set (decimal){poundage_amount}=get_payment_poundage_amount({strtoint({dr_pay[id]})})%>
+                                            <li style="margin-left: 0">
+                                                <input type="radio" name="payment" class="pay_ways_radiobutton" <%if {dr_pay[api_path]}=="alipay"%>checked="checked"<%/if%> value="{dr_pay[id]}">
+                                                <img src="{dr_pay[img_url]}" title="{dr_pay[title]}" width="119" height="37" />
+                                            </li>
+                                            <%/loop%>
+                                        </ul>
+                                       
+                                    </div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <!--确认付款 内容end-->
+            <!--确认付款 底部 start-->
+            <div class="rurebottom">
+                <div class="rurebottom_main">
+                     <a href="javascript:;" onclick="finish_pay()" style="float: right; background: url('<%templateskin%>/images/accounts.jpg') no-repeat; margin-top: -52px; ">
+                    </a>
+                </div>
+            </div>
+            <!--确认付款  底部 end-->
+        </div>
+        <input type="hidden" id="hd_orderid" value="" />
+        </form>

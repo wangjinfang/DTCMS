@@ -1,0 +1,135 @@
+﻿<div class="Search_page">
+            <!--搜索页 顶部 start-->
+            <div class="collocation_top">
+                <div class="collocation_top_right" style="float: right; margin-right: 10px">
+                    <img onclick="close_shopping()" src="<%templateskin%>/images/close_detail.jpg" width="14" height="17" /></div>
+            </div>
+            <!--搜索页 顶部 end-->
+            <!--搜索页 内容 start-->
+            <div class="search_center">
+                <div class="search_main">
+                    <p>
+                        <img src="<%templateskin%>/images/search_logo.jpg" /></p>
+                    <div class="search_box">
+                        <div class="search_box_content">
+                            <input type="text" id="search" />
+                        </div>
+                        <button type="sumbit" id="search_button" onclick="getpagedata_search()">
+                        </button>
+                    </div>
+                    <div class="search_menu" style=" display:none;">
+                        <ul>
+                            <li>
+                                <input type="checkbox" name="" class="search_check" id="key_content" />
+                                <label>
+                                    桌面办公
+                                </label>
+                                <a href="javascript:;"></a>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" name="" class="search_check" />
+                                        <label>
+                                            桌面办公></label>
+                                        <ul>
+                                            <li><a href="#">计算机</a></li>
+                                            <li><a href="#">计算机</a></li>
+                                            <li><a href="#">计算机</a></li>
+                                            <li><a href="#">计算机</a></li>
+                                            <li><a href="#">计算机</a></li>
+                                            <li><a href="#">计算机</a></li>
+                                            <li><a href="#">计算机</a></li>
+                                            <li><a href="#">计算机</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" name="" class="search_check" />
+                                        <label>
+                                            桌面办公></label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" name="" class="search_check" />
+                                        <label>
+                                            桌面办公></label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" name="" class="search_check" />
+                                        <label>
+                                            桌面办公></label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" name="" class="search_check" />
+                                        <label>
+                                            桌面办公></label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="" class="search_check" />
+                                <label>
+                                    桌面办公
+                                </label>
+                                <a href="javascript:;"></a></li>
+                            <li>
+                                <input type="checkbox" name="" class="search_check" />
+                                <label>
+                                    桌面办公
+                                </label>
+                                <a href="javascript:;"></a></li>
+                            <li>
+                                <input type="checkbox" name="" class="search_check" />
+                                <label>
+                                    桌面办公
+                                </label>
+                                <a href="javascript:;"></a></li>
+                            <li>
+                                <input type="checkbox" name="" class="search_check" />
+                                <label>
+                                    桌面办公
+                                </label>
+                                <a href="javascript:;"></a></li>
+                            <li>
+                                <input type="checkbox" name="" class="search_check" />
+                                <label>
+                                    桌面办公
+                                </label>
+                                <a href="javascript:;"></a></li>
+                        </ul>
+                    </div>
+                    <div class="hot_search">
+                   
+                        热搜词：  <%csharp%>
+                        string hot_search = "";
+                        hot_search = config.hot_search;
+                    if (hot_search.Contains(","))
+            {
+                for (int z = 0; z < hot_search.Split(',').Length; z++)
+                {
+                string aa=hot_search.Split(',')[z].ToString();
+                    <%/csharp%>
+                  <a href="javascript:getpagedata({aa}, 0, 0, 1);">{aa}</a> 
+                     <%csharp%>   }}<%/csharp%></div>
+                    <div class="search_bottom">
+                        <div class="search_bottom_top">
+                            <ul style="margin-top: 0">
+                                <li><a href="javascript:;">计算器</a></li>
+                                <li><a href="javascript:;">百事贴</a></li>
+                                <li><a href="javascript:;">便签纸</a></li>
+                                <li><a href="javascript:;">票夹</a></li>
+                                <li><a href="javascript:;">剪刀</a></li>
+                            </ul>
+                        </div>
+                        <div class="search_bottom_main">
+                            <ul>
+                                <li><a href="#">
+                                    <img src="<%templateskin%>/images/search_bottom.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="<%templateskin%>/images/search_bottom.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="<%templateskin%>/images/search_bottom.jpg" /></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--搜索页 内容 end-->
+        </div>

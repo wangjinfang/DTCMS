@@ -1,0 +1,101 @@
+﻿
+<%csharp%>
+if(action=="" || action=="info" || action=="index" || action.IndexOf("address")>-1 || action=="pwd" || action=="ticket"|| action=="fapiao"|| action=="fapiao2")
+{
+<%/csharp%>
+<!--用户管理开始-->
+<div class="hmrightzuo">
+    <div class="Cusmanager h36">
+        <ul>
+            <li 
+            <%csharp%>
+            if(action=="" || action=="info" || action=="index"){
+            <%/csharp%>
+            class="hmerjion"
+            <%csharp%>
+            }
+            <%/csharp%> 
+            ><a href="<%linkurl("usercenter","info")%>">
+                <%if userModel.user_type==2%>企业资料<%else%>个人资料<%/if%></a> </li>
+            <li <%if action.IndexOf("address")>-1%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","address")%>">
+                收货地址</a></li>
+            <li <%if action=="pwd"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","pwd")%>">
+                密码管理</a></li>
+            <li <%if action=="ticket"||action=="fapiao"|| action=="fapiao2"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","ticket")%>">
+                开票管理</a></li>
+        </ul>
+    </div>
+</div>
+<%csharp%>
+}
+if(action=="collect" || action=="history")
+{
+<%/csharp%> 
+<!--我的收藏开始-->
+<div class="hmrightzuoteshu">
+    <div class="Cusmanager h222">
+        <ul>
+            <li <%if action=="collect"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","collect")%>">
+                收藏商品</a></li>
+            <li <%if action=="history"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","history")%>">
+                浏览商品</a></li>
+        </ul>
+    </div>
+</div>
+<%csharp%>
+}
+if (action=="tg" || action=="order" || action=="book")
+{
+<%/csharp%> 
+<!--订单开始-->
+<div class="hmrightzuoteshu">
+    <div class="Cusmanager h278">
+        <ul>
+        <li <%if action=="order"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","order")%>">
+                订单状态</a></li>
+            <li <%if action=="tg"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","tg")%>">
+                团购订单</a></li> 
+            <li <%if action=="book"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","book")%>">
+                预定商品</a></li>
+        </ul>
+    </div>
+</div>
+<%csharp%>
+}
+if(action=="money" || action=="point" || action=="coupons")
+{
+<%/csharp%>
+<!--账户开始-->
+<div class="hmrightzuo">
+    <div class="Cusmanager h367">
+        <ul>
+            <li <%if action=="money"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","money")%>">
+                现金账户</a></li>
+            <li <%if action=="point"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","point")%>">
+                积分账户</a></li>
+            <li <%if action=="coupons"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","coupons")%>">
+                礼券账户</a></li>
+        </ul>
+    </div>
+</div>
+<%csharp%>
+}
+if(action.IndexOf("branch")>-1 || action.IndexOf("staff")>-1)
+{
+<%/csharp%>
+<!--账号分配开始-->
+<div class="hmrightzuo">
+    <div class="Cusmanager h454">
+        <ul>
+        <li <%if action.IndexOf("branch")>-1%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","branch_list")%>">
+                部门管理</a></li>
+            <li <%if action=="staff_list"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","staff_list")%>">
+                员工管理</a></li>
+            <li <%if action=="add_staff"%>class="hmerjion" <%/if%>><a href="<%linkurl("usercenter","add_staff")%>">
+                添加员工</a></li>
+        </ul>
+    </div>
+</div> 
+<%csharp%>
+}
+<%/csharp%>

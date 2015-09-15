@@ -1,0 +1,178 @@
+﻿<%csharp%>
+model = new DTcms.Web.UI.BasePage().GetUserInfo();
+if (model != null)
+{
+    DTcms.BLL.prizes pbll = new DTcms.BLL.prizes();
+    DTcms.BLL.share sbll = new DTcms.BLL.share();
+    DataSet sds = sbll.GetList("user_id=" + model.id);
+    if (sds != null && sds.Tables[0].Rows.Count > 0)
+    {
+        num = 4;//分享过之后4次抽奖机会
+    }
+
+    DataSet uds = pbll.GetList("user_id=" + model.id);
+    if (uds != null && uds.Tables[0].Rows.Count >= 0)
+    {
+        jp_dt = uds.Tables[0];
+        num = num - uds.Tables[0].Rows.Count;
+    }
+}
+<%/csharp%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>企力办公-中奖页面</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+    <link rel="stylesheet" type="text/css" href="<%templateskin%>/css/prize.css">
+    <script src="<%templateskin%>/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.form.min.js"></script> 
+    <script src="<%templateskin%>/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="<%templateskin%>/js/jQueryRotate.2.2.js"></script>
+    <script src="<%templateskin%>/js/jquery.easing.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var timeOut = function () {  //超时函数
+                $("#lotteryBtn").rotate({
+                    angle: 0,
+                    duration: 10000,
+                    animateTo: 2160, //这里是设置请求超时后返回的角度，所以应该还是回到最原始的位置，2160是因为我要让它转6圈，就是360*6得来的
+                    callback: function () {
+                        alert('网络超时')
+                    }
+                });
+            };
+            var rotateFunc = function (awards, angle, text) {  //awards:奖项，angle:奖项对应的角度
+                $('#lotteryBtn').stopRotate();
+                $("#lotteryBtn").rotate({
+                    angle: 0,
+                    duration: 5000,
+                    animateTo: angle + 1440, //angle是图片上各奖项对应的角度，1440是我要让指针旋转4圈。所以最后的结束的角度就是这样子^^
+                    callback: function () {
+                        alert(text)
+                    }
+                });
+            };
+            $("#lotteryBtn").rotate({
+                bind: {
+                    click: function () {
+                        $.ajax({
+                            type: "post",
+                            url: "/tools/submit_ajax.ashx?action=user_get_prize&r=" + Math.random(),
+                            beforeSend: function (XMLHttpRequest) {
+                                //ShowLoading();
+                            },
+                            success: function (result, textStatus) {
+                                var data = $.parseJSON(result);
+                                if (data.status == 0) {
+                                    alert(data.msg);
+                                    location.href = '<%linkurl("login")%>';
+                                } else {
+                                    $("#num").html(parseInt($("#num").html()) - 1);
+                                }
+                                if (data.status == 1) {
+                                    rotateFunc(1, 23, '恭喜您抽中IPhone6');
+                                }
+                                if (data.status == 2) {
+                                    rotateFunc(2, 52, '恭喜您抽中10元体验包');
+                                }
+                                if (data.status == 3) {
+                                    rotateFunc(3, 112, '哎呀我去！什么都没有。');
+                                }
+                                if (data.status == 4) {
+                                    rotateFunc(4, 155, '恭喜您抽中100元抵用券');
+                                }
+                                if (data.status == 5) {
+                                    rotateFunc(5, 203, '恭喜您抽中100元话费');
+                                }
+                                if (data.status == 6) {
+                                    rotateFunc(6, 240, '恭喜您抽中小米4');
+                                }
+                                if (data.status == 7) {
+                                    rotateFunc(7, 301, '恭喜您抽中免费送货劵');
+                                }
+                                if (data.status == 8) {
+                                    rotateFunc(8, 330, '恭喜您抽中50元抵用券');
+                                }
+                            },
+                            error: function () {
+                                //请求出错处理
+                                alert("抽奖失败！");
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!--中奖头部 开始-->
+    <div class="prize_top">
+    </div>
+    <!--中奖头部 结束-->
+    <!--中奖名单 开始-->
+    <div class="prize_name">
+        <div class="prize_namel rotate-bg">
+            <div style="background-image: url(<%templateskin%>/images/prize_namel.jpg); width: 465px;
+                height: 470px; position: relative;">
+                <div id="lotteryBtn" style="width: 178px; height: 178px; position: absolute; top: 131px;
+                    left: 143px;">
+                    <img src="<%templateskin%>/images/rotate-static.png" width="178px" height="178px"
+                        alt="指针">
+                </div>
+            </div>
+        </div>
+        <div class="prize_namer">
+            <div class="prize_name_list">
+                <ul>
+                    <%foreach(DataRow dr in p_dt.Rows)%>
+                    <li>{dr[user_name]} 获得 {dr[prize]}</li>
+                    <%/foreach%>                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--中奖名单 结束-->
+    <!--奖品区域 开始-->
+    <%if(model!=null)%>
+    <div class="giftbox">
+        <div class="gift">
+            <div class="gift_left">
+                <ul>
+                    <%foreach(DataRow dr in jp_dt.Rows)%>
+                    <li><a href="javascript:void();">
+                    <%if dr["prize"].ToString().Trim()=="100元话费"%>
+                        <img src="<%templateskin%>/images/iph3.gif" width="216px" height="154px" alt="100元话费">
+                        <%else if dr["prize"].ToString().Trim()=="10元体验包"%>
+                        <img src="<%templateskin%>/images/iph5.gif" width="216px" height="154px" alt="10元体验包">
+                        <%else if dr["prize"].ToString().Trim()=="50元抵用券"%>
+                        <img src="<%templateskin%>/images/iph1.gif" width="216px" height="154px" alt="50元抵用券">
+                        <%else if dr["prize"].ToString().Trim()=="iph2.gif"%>
+                        <img src="<%templateskin%>/images/prizeone.jpg" width="216px" height="154px" alt="100元抵用券">
+                        <%else if dr["prize"].ToString().Trim()=="iph4.gif"%>
+                        <img src="<%templateskin%>/images/prizeone.jpg" width="216px" height="154px" alt="免费送货劵">
+                        <%/if%>
+                                               </a></li>
+                    <%/foreach%>
+                </ul>
+            </div>
+            <div class="gift_right">
+                <p>
+                    剩余抽奖次数</p>
+                <strong id="num">{num}</strong>
+                <input type="button" value="全部领取" class="getprize">
+            </div>
+        </div>
+    </div>
+    <%/if%>
+    <!--奖品区域 结束-->
+    <script type="text/javascript">
+        //奖品滚动
+        jQuery(".gift").slide({ mainCell: ".gift_left ul", autoPlay: true, effect: "leftMarquee", vis: 4, interTime: 30, trigger: "click", opp: true });
+        //名单滚动
+        jQuery(".prize_namer").slide({ mainCell: ".prize_name_list ul", autoPlay: true, effect: "topMarquee", vis: 13, interTime: 50, trigger: "click" });
+    </script>
+</body>
+</html>

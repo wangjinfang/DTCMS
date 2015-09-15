@@ -1,0 +1,87 @@
+﻿<div class="hmrightyouteshu">
+					<div class="hmrightyouboxteshu">
+						<div class="accountfenpeitop">
+							<div class="hmrightyouboxtoptwo">
+								<ul>
+									<li class="w274">商品</li> 
+                                    <li class="w188">规格</li>
+									<li class="w61">数量</li>
+									<li class="w65">价格</li>
+									<li class="w117">全部状态<em><img width="10px" height="6px" alt="全部箭头" src="<%templateskin%>/images/alljiantou.png"></em></li> 
+								</ul>
+							</div>
+						</div>
+                        <%set DataTable dt_order=get_order_list(10, page,"user_id="+userModel.id,out totalcount)%>
+                            <%set string pagelist1=get_page_link(10, page, totalcount, "usercenter", action, "__id__")%> <!--取得分页页码列表-->
+                            <%loop dr_order dt_order%>
+						<div class="dangood">
+							<div class="dangoodtop">
+								<span class="hm274">
+									<div class="hm274l">
+										<a href="javascript:void();"><img src="<%templateskin%>/images/xiajiantou.png" width="9px" height="5px" alt="箭头向下"></a>
+									</div>
+									<div class="hm274r">
+										<p>订单编号：{dr_order[order_no]}</p>
+										<p>下单时间：{dr_order[add_time]}</p>
+									</div>
+								</span>
+								<span class="hm61"></span>
+								<span class="hm61"><%if Convert.ToInt32(dr_order["is_up"])==2%>上报<%else if Convert.ToInt32(dr_order["is_up"])==3%>月结<%/if%></span>
+								<span class="hm65">￥{dr_order[order_amount]}</span>
+                                
+								<span class="hm117"><em><img src="<%templateskin%>/images/henggan.png" width="11px" height="11px" alt="立即支付"></em><%write get_order_status(Convert.ToInt32(dr_order["id"]))%></span>
+                                
+								<span class="hm188">
+                                <%if Convert.ToInt32(dr_order["payment_status"])<2 && Convert.ToInt32(dr_order["status"])<3%>
+									<em class="hmtuone" onclick="pay_now('{dr_order[id]}')"><a href="javascript:;" ></a></em>
+                                    <%/if%>
+									<em class="hmtutwo"><a href="javascript:void();"></a></em>
+                                   
+                                    <%csharp%>
+                                    if (Convert.ToInt32(dr_order["payment_status"])<2 && Convert.ToInt32(dr_order["is_up"])<3 && Convert.ToInt32(dr_order["status"])<3)
+                                    {
+                                    <%/csharp%>
+									<em class="hmtutree" onclick="cancel_order('{dr_order[id]}')"><a href="javascript:;"></a></em>
+                                     <%csharp%>
+                                     }
+                                     <%/csharp%>
+								</span>
+							</div>
+
+							<div class="dangoodbottom">
+								<ul>
+                                <%set DataTable dt_order_goods=get_order_goods_list1(Convert.ToInt32(dr_order["id"]))%>
+                                <%loop dr_order_goods dt_order_goods%>
+									<li>
+										<span class="h274" style=" width:253px;">
+											<dl>
+												<dt><a href="<%linkurl("good_show",{dr_order_goods[goods_id]})%>"><img width="90px" height="90px" alt="{dr_order_goods[goods_title]}" src="{dr_order_goods[img_url]}"></a></dt>
+												<dd style="width: 145px;">
+													<strong>{dr_order_goods[goods_title]} </strong>
+													<p>
+                                                    <%if Convert.ToInt32(dr_order["is_up"])==2%>
+                                                    <%write get_real_name(Convert.ToInt32(dr_order["user_id"]))%>&nbsp;&nbsp;上报
+                                                    <%/if%>
+                                                    </p>
+												</dd>
+											</dl>
+										</span> 
+                                        <span class="h188">&nbsp;<%write new DTcms.BLL.standard_value().get_standrad(dr_order_goods["standard"].ToString())%></span>
+										<span class="h61">{dr_order_goods[quantity]}</span>
+										<span class="h65">￥{dr_order_goods[real_price]}</span>
+										
+									</li>
+                                    <%/loop%>
+
+								</ul>
+							</div>
+
+
+						</div>
+                        <%/loop%> 
+					</div>
+                    
+                    <div class="flickr">{pagelist1}</div> <!--放置页码列表-->
+                   
+				</div>
+                

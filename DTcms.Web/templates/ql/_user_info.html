@@ -1,0 +1,110 @@
+﻿<link rel="stylesheet" href="{config.webpath}css/validate.css" />  
+<script type="text/javascript" src="{config.webpath}scripts/calendar.js"></script>
+<form name="form1" id="form1">
+<div class="hmrightyou">
+					<div class="hmrightyoubox">
+						<div class="deptop"><%if userModel.user_type==1%>个人资料<%else%>企业资料<%/if%></div>
+						<div class="addstaff">
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">账户名：</span>
+								<b>{userModel.user_name}</b>
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28"><%if userModel.user_type==1%>昵称<%else%>企业名称<%/if%>：</span>
+								<input type="text" id="nick_name" name="nick_name" class="qltxt txt150" value="{userModel.nick_name}">
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">邮箱：</span>
+								<input type="text" id="email" name="email" class="qltxt txt150" value="{userModel.email}">
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">手机号码：</span>
+								<input type="text" id="mobile" name="mobile" class="qltxt txt150" value="{userModel.mobile}">
+							</div>
+							<div class="addstaffbox mb15 qilipic">
+								<span class="qlleft lh28">头像：</span>
+                                 
+								 <%if(userModel.avatar!="")%>
+        <img src="{userModel.avatar}" width="100" height="100" title="企力形象"/>
+      <%else%>
+        <img src="<%templateskin%>/images/user_avatar.png" width="100" height="100" title="企力形象" />
+      <%/if%>
+                                <span><a href="<%linkurl("usercenter","avatar")%>">设置头像</a></span>
+							</div>
+							<div class="addstaffbox">
+								<span class="qlleft">性别：</span>
+								<label>
+                                <%if userModel.sex=="男"%>
+                                <input type="radio" class="addcheck" value="男" name="sex" checked="checked"> 男
+                                <%else%>
+								<input type="radio" class="addcheck" value="男" name="sex"> 男
+                                <%/if%>
+								</label>
+								<label>
+                                <%if userModel.sex=="女"%>
+                                <input type="radio" class="addcheck" value="女" name="sex" checked="checked"> 女
+                                <%else%>
+								<input type="radio" class="addcheck" value="女" name="sex"> 女
+                                <%/if%>
+								</label>
+							</div>
+							<div class="addstaffbox">
+								<span class="qlleft">生日：</span>
+								<%if {userModel.birthday}==null%>
+                                <input name="txtBirthday" id="txtBirthday" type="text" class="qltxt txt150" onclick="return Calendar('txtBirthday');" />
+                                <%else%>
+                                <input name="txtBirthday" id="txtBirthday" type="text" class="qltxt txt150" onclick="new Calendar().show(this);" value="<%datetostr({userModel.birthday},yyyy-M-d)%>" />
+                                <%/if%>
+								<em class="baomi">(出生年份为保密)</em>
+							</div>
+							<div class="addstaffbox">
+								<span class="qlleft">公司地址：</span>
+								<select class="selectone qlleft bghui you4" id="province" name="province" onchange="province_change('province','city')">
+                                <option value="">-请选择-</option>
+                                <%set DataTable dt_province=get_province()%>
+                                <%loop dr_province dt_province%>
+									<option value="{dr_province[ProvinceID]}" <%if userModel.province==Convert.ToInt32(dr_province["ProvinceID"])%> selected="selected"<%/if%>>{dr_province[ProvinceName]}</option>
+                                    <%/loop%>
+								</select>
+								<select class="selectone qlleft bghui you4" id="city" name="city" onchange="city_change('city','district')">
+									<option value="">-请选择-</option>
+                                    <%if userModel.province>0 %>
+                                        <%set DataTable dt_city=get_city("ProvinceID="+userModel.province)%>
+                                        <%loop dr_city dt_city%>
+                                        <option value="{dr_city[CityID]}" <%if userModel.city==Convert.ToInt32(dr_city["CityID"])%> selected="selected"<%/if%>>{dr_city[CityName]}</option>
+                                        <%/loop%>
+                                    <%/if%>
+								</select>
+								<select class="selectone qlleft bghui you4" id="district" name="district">
+									<option value="">-请选择-</option>
+                                    <%if userModel.city>0 %>
+                                        <%set DataTable dt_district=get_district("CityID="+userModel.city)%>
+                                        <%loop dr_district dt_district%>
+                                        <option value="{dr_district[DistrictID]}" <%if userModel.district==Convert.ToInt32(dr_district["DistrictID"])%> selected="selected"<%/if%>>{dr_district[DistrictName]}</option>
+                                        <%/loop%>
+                                    <%/if%>
+								</select>
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">详细地址：</span>
+								<input type="text" class="qltxt txt150" id="address" name="address" value="{userModel.address}">
+							</div>
+                            <%if userModel.user_type!=1%>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">采购负责人：</span>
+								<input type="text" class="qltxt txt150" id="purchase" name="purchase" value="{userModel.purchase}">
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">联系方式：</span>
+								<input type="text" class="qltxt txt150" id="purchase_mobile" name="purchase_mobile" value="{userModel.purchase_mobile}">
+							</div>
+                            <%/if%>
+							<div class="linehui"></div>
+							<div class="addstaffbox">
+								<span class="qlleft lh28"></span>
+								<input type="button" id="btn_save" class="qlbtn" width="92px" height="29px" onclick="save_user_info('{userModel.user_type}')">
+							</div>
+						</div>
+					</div>
+				</div>
+                </form>

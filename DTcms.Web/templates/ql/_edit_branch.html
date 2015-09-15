@@ -1,0 +1,29 @@
+﻿<%csharp%>
+DTcms.Model.branch model_branch=new DTcms.BLL.branch().GetModel(id);
+if(model_branch==null)
+{
+HttpContext.Current.Response.Redirect(linkurl("error", "?msg=" + Utils.UrlEncode("出错啦，您要浏览的页面不存在或已删除啦！")));
+return;
+}
+<%/csharp%>
+<form name="form1" id="form1">
+<div class="hmrightyou">
+    <div class="hmrightyoubox">
+        <div class="deptop">
+            添加部门</div>
+        <div class="addstaff">
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">部门名称：</span>
+                <input type="text" id="title" name="title" class="qltxt txt150" value="{model_branch.title}">
+                <input type="hidden" name="hd_id" value="{model_branch.id}" />
+            </div>
+            <div class="linehui">
+            </div>
+            <div class="addstaffbox">
+                <span class="qlleft lh28"></span>
+                <input type="button" id="btn_add" class="qlbtn" width="92px" height="29px" onclick="save_branch('<%linkurl("usercenter","branch_list")%>')">
+            </div>
+        </div>
+    </div>
+</div>
+</form>

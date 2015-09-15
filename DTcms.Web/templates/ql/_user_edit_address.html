@@ -1,0 +1,86 @@
+﻿<%csharp%>
+DTcms.Model.address model_address=new DTcms.BLL.address().GetModel(id);
+if(model_address==null)
+{
+HttpContext.Current.Response.Redirect(linkurl("error", "?msg=" + Utils.UrlEncode("出错啦，您要浏览的页面不存在或已删除啦！")));
+return;
+}
+<%/csharp%>
+<div class="hmrightyou">
+    <div class="hmrightyoubox">
+        <div class="deptop">
+            收货地址</div>
+        <div class="addstaff">
+            <div class="shouaddressp mb15">
+                <p>
+                    修改收货地址</p>
+            </div>
+            <form id="form1">
+            <div class="addstaffbox">
+                <span class="qlleft">收货地址：</span>
+                <select class="selectone qlleft bghui you4" id="province" name="province" onchange="province_change('province','city')">
+                                <option value="">-请选择-</option>
+                                <%set DataTable dt_province=get_province()%>
+                                <%loop dr_province dt_province%>
+									<option value="{dr_province[ProvinceID]}" <%if model_address.province==Convert.ToInt32(dr_province["ProvinceID"])%> selected="selected"<%/if%>>{dr_province[ProvinceName]}</option>
+                                    <%/loop%>
+								</select>
+								<select class="selectone qlleft bghui you4" id="city" name="city" onchange="city_change('city','district')">
+									<option value="">-请选择-</option>
+                                    <%if userModel.province>0 %>
+                                        <%set DataTable dt_city=get_city("ProvinceID="+userModel.province)%>
+                                        <%loop dr_city dt_city%>
+                                        <option value="{dr_city[CityID]}" <%if model_address.city==Convert.ToInt32(dr_city["CityID"])%> selected="selected"<%/if%>>{dr_city[CityName]}</option>
+                                        <%/loop%>
+                                    <%/if%>
+								</select>
+								<select class="selectone qlleft bghui you4" id="district" name="district">
+									<option value="">-请选择-</option>
+                                    <%if userModel.city>0 %>
+                                        <%set DataTable dt_district=get_district("CityID="+userModel.city)%>
+                                        <%loop dr_district dt_district%>
+                                        <option value="{dr_district[DistrictID]}" <%if model_address.distract==Convert.ToInt32(dr_district["DistrictID"])%> selected="selected"<%/if%>>{dr_district[DistrictName]}</option>
+                                        <%/loop%>
+                                    <%/if%>
+								</select>
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">详细地址：</span>
+                <input type="text" class="qltxt txt150 txt664" id="address" name="address" value="{model_address.content}">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">公司地址：</span>
+                <input type="text" class="qltxt txt150 txt664" id="consignee_company" name="consignee_company" value="{model_address.company_address}">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">邮政编码：</span>
+                <input type="text" class="qltxt txt150" id="zipcode" name="zipcode" value="{model_address.zipcode}">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">收货人姓名：</span>
+                <input type="text" class="qltxt txt150" id="consignee" name="consignee" value="{model_address.consignee}">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">手机号码：</span>
+                <input type="text" class="qltxt txt150" id="consignee_mobile" name="consignee_mobile" value="{model_address.consignee_mobile}">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">电话号码：</span>
+                <%if model_address.consignee_phone!=null && model_address.consignee_phone.IndexOf("-")>-1%>
+                <input type="text" class="qltxt txt150 txt68" id="zip_phone" name="zip_phone" value="{model_address.consignee_phone.Split('-')[0]}">
+                -
+                <input type="text" class="qltxt txt150 txt68" id="phone" name="phone" value="{model_address.consignee_phone.Split('-')[1]}">
+                <%else%>
+                <input type="text" class="qltxt txt150 txt68" id="zip_phone" name="zip_phone" value="">
+                -
+                <input type="text" class="qltxt txt150 txt68" id="phone" name="phone" value="">
+                <%/if%>
+            </div>
+            <div class="addstaffbox">
+                <span class="qlleft lh28"></span>
+                <input type="button" class="qlbtn" width="92px" height="29px" id="btn" onclick="save_address('{model_address.id}','<%linkurl("usercenter","address")%>')">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

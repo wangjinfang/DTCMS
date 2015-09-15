@@ -1,0 +1,88 @@
+﻿<div class="top" style="background: #fff;">
+    <div class="top_main" style="position: relative;">
+        <!--logo start-->
+        <div class="logo">
+            <img src="<%templateskin%>/images/logo2.jpg" width="92" height="89"></div>
+        <!--logo end-->
+        <!--菜单 start-->
+        <div class="top_menu">
+            <ul>
+                <li><a href="<%linkurl("index")%>" target="_blank" class="a_class">首页</a></li>
+                <li><a href="<%linkurl("good_category")%>" class="a_class">办公用品</a></li>
+                <li><a href="<%linkurl("qyservice")%>" class="a_class">办公服务</a>
+                    <ul class="subnav" style="background: #fff; position: absolute; display: none;">
+                        <li style="display: block; float: none; line-height: 22px; overflow: hidden; height: 22px;">
+                            <a href="#" style="display: block; text-align: center;">家政</a></li>
+                        <li style="display: block; float: none; line-height: 22px; overflow: hidden; height: 22px;">
+                            <a href="#" style="display: block; text-align: center;">建站</a></li>
+                        <li style="display: block; float: none; line-height: 22px; overflow: hidden; height: 22px;">
+                            <a href="#" style="display: block; text-align: center;">金融</a></li>
+                        <li style="display: block; float: none; line-height: 22px; overflow: hidden; height: 24px;">
+                            <a href="#" style="display: block; text-align: center; border-bottom: 1px solid #F00;">
+                                礼品</a></li>
+                    </ul>
+                </li>
+                <li style=" display:none;"><a href="<%linkurl("prize")%>" class="a_class">最新活动</a></li>
+                <li><a href="<%linkurl("about")%>" class="a_class">帮助中心</a></li>
+            </ul>
+        </div>
+        <!--菜单 end-->
+        <!--入驻 start-->
+        <div class="top_right">
+            <div class="top_right_top">
+                <%set DTcms.Model.users __user=GetUserInfo()%>
+                <%if(__user!=null)%>
+                欢迎您&nbsp;&nbsp;{__user.user_name}&nbsp;&nbsp;&nbsp;&nbsp; <span><a href="<%linkurl("usercenter","order")%>">我的订单</a></span>&nbsp;|
+                <span><a href="<%linkurl("usercenter","order")%>">我的账户</a></span>&nbsp;| <span><a href="<%linkurl("usercenter","exit")%>">
+                        退出 </a></span>
+                <%else%>
+                <span><a href="<%linkurl("login")%>">登录</a></span>&nbsp;| <span><a href="<%linkurl("register")%>">
+                    注册 </a></span>
+                <%/if%>
+                | <span><a
+                    href="javascript:;" onclick="open_shopping()">购物车</a></span>&nbsp;
+            </div>
+        </div>
+        <div class="top_right_b">
+            <div style="padding-left: 65px; line-height: 45px;">
+                <input type="text" class="input_class" id="top_txt_sel" /><a href="javascript:;" onclick="top_search()" class="search_a"><img src="<%templateskin%>/images/search2.jpg" height="28" width="28" title="search" /></a> 
+                <span class="span_search_1"><a href="<%linkurl("iph")%>" style="color: White; text-decoration: none;">手机订购</a></span> 
+                <span class="span_search_2">
+                            <style type="text/css">
+                              .Industry_a{height:30px;overflow: hidden;width: 100px;float: left;}
+                                ul, li{margin: 0;padding: 0;list-style-type: none; } 
+                                #in span {float: left;}
+                            </style>
+                            <div class="Industry_a">
+                            <%set DataTable list=get_article_list("hezuomingqi", 10, "")%>
+             
+                                <ul id="in">
+                                 <%loop listdr1 list%>
+                                    <li class="wuzi_text" style="line-height: 30px;"><a href="<%linkurl("hezuoqy")%>"><span style=" color:White;">{listdr1[abbreviation]}入驻</span></a></li>
+                                    <%/loop%>
+                                </ul>
+                            </div>
+                        </span>
+            </div>
+        </div>
+    </div>
+    <!--入驻 end-->
+</div>
+<!--<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $('.top_menu li').each(function () {
+            $(this).hover(
+ 			function () {
+ 			    $(this).children('ul.subnav').slideDown('fast');
+ 			},
+ 			function () {
+ 			    $(this).children('ul.subnav').slideUp('fast');
+ 			}
+ 		);
+        })
+    });
+</script>-->
+<script type="text/javascript" language="javascript">
+
+    setObjScroll("in", 30, 20, 1500);
+    </script>

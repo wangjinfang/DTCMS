@@ -1,0 +1,95 @@
+﻿<div class="hmrightyou">
+    <div class="hmrightyoubox">
+        <div class="deptop">
+            收货地址</div>
+        <div class="addstaff">
+            <div class="shouaddressp mb15">
+                <p>
+                    新增收货地址</p>
+            </div>
+            <form id="form1">
+            <div class="addstaffbox">
+                <span class="qlleft">收货地址：</span>
+                <select class="selectone qlleft bghui you4" id="province" name="province" onchange="province_change('province','city')">
+                    <option value="">-请选择-</option>
+                    <%set DataTable dt_province=get_province()%>
+                    <%loop dr_province dt_province%>
+                    <option value="{dr_province[ProvinceID]}">{dr_province[ProvinceName]}</option>
+                    <%/loop%>
+                </select>
+                <select class="selectone qlleft bghui you4" id="city" name="city" onchange="city_change('city','district')">
+                    <option value="">-请选择-</option>
+                </select>
+                <select class="selectone qlleft bghui you4" id="district" name="district">
+                    <option value="">-请选择-</option>
+                </select>
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">详细地址：</span>
+                <input type="text" class="qltxt txt150 txt664" id="address" name="address">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">公司地址：</span>
+                <input type="text" class="qltxt txt150 txt664" id="consignee_company" name="consignee_company">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">邮政编码：</span>
+                <input type="text" class="qltxt txt150" id="zipcode" name="zipcode">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">收货人姓名：</span>
+                <input type="text" class="qltxt txt150" id="consignee" name="consignee">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">手机号码：</span>
+                <input type="text" class="qltxt txt150" id="consignee_mobile" name="consignee_mobile">
+            </div>
+            <div class="addstaffbox mb15">
+                <span class="qlleft lh28">电话号码：</span>
+                <input type="text" class="qltxt txt150 txt68" id="zip_phone" name="zip_phone">
+                -
+                <input type="text" class="qltxt txt150 txt68" id="phone" name="phone">
+            </div>
+            <div class="addstaffbox">
+                <span class="qlleft lh28"></span>
+                <input type="button" class="qlbtn" width="92px" height="29px" id="btn" onclick="add_address()">
+            </div>
+            </form>
+            <div class="shouaddressp mb15">
+                <p>
+                    已保存的有效地址</p>
+            </div>
+            <div class="accountfenpeitop w729">
+                <div class="hmrightyouboxtoptwo w729">
+                    <ul class="w729">
+                        <li class="w88">收货人</li>
+                        <li class="w150">所在地区</li>
+                        <li class="w174">街道地址</li>
+                        <li class="w90">邮编</li>
+                        <li class="w124">手机</li>
+                        <li class="w100">操作</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="addressbottom">
+                <ul>
+                <%set DataTable dt_address=get_address_list(4, page,"user_id="+userModel.id,"add_time desc",out totalcount)%>
+                            <%set string pagelist1=get_page_link(4, page, totalcount, "usercenter", action, "__id__")%> <!--取得分页页码列表-->
+                            <%loop dr_address dt_address%>
+                    <li><span class="w88" title="{dr_address[consignee]}">{dr_address[consignee]}&nbsp;</span> <span class="w150" title="<%write get_province_title(Convert.ToInt32(dr_address["province"]))%><%write get_city_title(Convert.ToInt32(dr_address["city"]))%><%write get_district_title(Convert.ToInt32(dr_address["distract"]))%>"><%write get_province_title(Convert.ToInt32(dr_address["province"]))%>&nbsp;<%write get_city_title(Convert.ToInt32(dr_address["city"]))%>&nbsp;<%write get_district_title(Convert.ToInt32(dr_address["distract"]))%></span> 
+                    <span class="w174" title="{dr_address[content]}">
+                        <%cutstring({dr_address[content]},28)%>&nbsp;</span> 
+                        <span class="w90">{dr_address[zipcode]}&nbsp;</span> 
+                        <span class="w124" title="手机：{dr_address[consignee_mobile]},电话:{dr_address[consignee_phone]}">{dr_address[consignee_mobile]}&nbsp;</span>
+                        <span class="w100">
+                        <a href="<%linkurl("usercenter","edit_address",0,{dr_address[id]})%>">修改</a>丨
+                        <a href="javascript:;" onclick="del_address({dr_address[id]})">删除</a></span> </li>
+                        <%/loop%> 
+                </ul>
+                <div class="fanye fanyetwo bottom20">
+                    <div class="flickr right">{pagelist1}</div><!--放置页码列表-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

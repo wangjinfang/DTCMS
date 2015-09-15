@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{model_meal.title} - {config.webname} - 性价比最高的办公用品商城</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+    <link rel="stylesheet" type="text/css" href="<%templateskin%>/css/style.css">
+    <link href="<%templateskin%>/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.form.min.js"></script> 
+    <script src="<%templateskin%>/js/nan.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+    <script src="<%templateskin%>/js/nan.js" type="text/javascript"></script>
+    <script src="<%templateskin%>/js/hang.js" type="text/javascript"></script>
+    <style type="text/css">
+        ul
+        {
+            list-style: none;
+        }
+        .slider
+        {
+            width: 1000px;
+            padding: 10px 20px;
+            height: 82px;
+            position: relative;
+            cursor: pointer;
+            margin: 20px auto;
+        }
+        #slider_pic
+        {
+            width: 890px;
+            margin: 0 auto;
+            overflow: hidden;
+            height: 130px;
+            position: relative;
+        }
+        .prev
+        {
+            position: absolute;
+            width: 34px;
+            height: 112px;
+            cursor: pointer;
+            top: 0;
+            background-image: url("<%templateskin%>/images/qlpic_030.jpg");
+            background-position: 0 -113px;
+            line-height: 20px;
+            font-weight: bold;
+        }
+        .next
+        {
+            position: absolute;
+            width: 34px;
+            height: 112px;
+            cursor: pointer;
+            top: 0;
+            background-image: url("<%templateskin%>/images/qlpic_090.jpg");
+            background-position: 0 -113px;
+            line-height: 20px;
+            font-weight: bold;
+        }
+        .next
+        {
+            right: 20px;
+        }
+        .no_click_1
+        {
+            background-image: url(<%templateskin%>/images/qlpic_030.jpg);
+            background-position: 0 0;
+        }
+        .no_click_2
+        {
+            background-image: url(<%templateskin%>/images/qlpic_090.jpg);
+            background-position: 0 0;
+        }
+        #slider_pic li
+        {
+            float: left;
+            margin: 10px 25px 0;
+        }
+        #slider_pic ul
+        {
+            position: absolute;
+            left: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+
+            var li_length = $('#slider_pic ul li').length; 
+            var now_li_index = 0;
+            now_li_index = $(".lp1 b img").index($(".kong"));
+            $('#slider_pic').find('ul').css("width", li_length * 130 + "px");
+            
+
+            if (now_li_index < 7) {
+
+                $('#slider_pic').find('ul').css({ left: 0 });
+            }
+            else if (now_li_index >= 7 && li_length >= 7 && li_length - 7 > now_li_index) {
+                var aa = -(now_li_index * 130);
+                $('#slider_pic').find('ul').css({ left: aa });
+            }
+            else if (now_li_index >= 7 && li_length >= 7 && li_length - 7 < now_li_index) {
+                var left_length = 0;
+                left_length = "-" + (parseInt(now_li_index) * 130 - parseInt(7 - (li_length - now_li_index)) * 130) + "px";
+                $('#slider_pic').find('ul').css("left", left_length);
+            }
+        });
+
+        function left_move() {
+            var left_length = $('#slider_pic').find('ul').css("left").replace("px","");
+            if (left_length != 0) {
+                $('#slider_pic').find('ul').animate({ left: parseInt(left_length)+130 });
+            }
+        }
+
+        function right_move() {
+            var left_length = $('#slider_pic').find('ul').css("left").replace("px", "");
+            var li_length = $('#slider_pic ul li').length;
+            var ul_length = li_length * 130;
+            var max_left_length = ul_length - 130 * 7;
+            if (-left_length < max_left_length) {
+                $('#slider_pic').find('ul').animate({ left: parseInt(left_length) - 130 });
+            }
+        }
+        
+
+    </script>
+    <script type="text/javascript">
+        $(function () {
+
+
+            $(".lp1 b img").click(function () {
+                $(this).removeClass("filt");
+
+
+            });
+
+            //            $(".lp1 b img").mouseleave(function () {
+            //                $(this).addClass("filt");
+            //            });
+
+            var indexs = $(".lp1 b img").index($(".kong"));
+            indexs = (indexs + 1) * 130;
+            $(".mo").each(function () {
+                $(this).css('left', '-520px');
+            });
+        });
+       
+    </script>
+</head>
+<body>
+    <%set (DTcms.Model.users){_userinfo} = GetUserInfo()%>
+    <%template src="_header.html"%>
+    <!--切换 开始-->
+    <div class="slider" class="book_nr">
+        <span class="prev no_click_1 " id="prev" onclick="left_move()"></span><span class="next" id="next" onclick="right_move()"></span>
+        <div id="slider_pic" style="position: relative;">
+            <ul>
+                <%csharp%>
+                DTcms.BLL.meal meal_bll = new DTcms.BLL.meal();<%/csharp%>
+                <%set DataTable dtss=meal_bll.GetList("").Tables[0]%>
+                <%loop hotdr2 dtss%>
+                <li class="lp1"><a href="<%linkurl("meal_show",{hotdr2[id]})%>"><b>
+                    <img src="{hotdr2[img_url]}" width="80" height="80" <%if id==int.Parse({hotdr2[id]}.ToString())%>class="kong"
+                        <%else%>class="filt" <%/if%> /></b>
+                    <p style="text-align: center; height: 21px;">
+                        {hotdr2[title]}</p>
+                    <%if id==int.Parse({hotdr2[id]}.ToString())%>
+                    <div class="linex" style="width: 25px; margin: 0 auto; height: 1px; background: #000;
+                        text-align: center;">
+                    </div>
+                    <%/if%>
+                </a></li>
+                <%/loop%>
+            </ul>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <div style="background: #E1DED9; width: 1000px; height: 1px; margin: 0 auto; clear: both;">
+    </div>
+    <!--切换 结束-->
+    <!--物流包装 开始-->
+    <div class="wlbz">
+        <%set DataTable dts=dt%>
+        <div class="wlbz_bt">
+            <h3>
+                {model_meal.title}</h3>
+            <a href="javascript:;" onclick="meal_into_shopping({id})">一键进购物车</a>
+        </div>
+        <div class="wlbz_nr">
+            <%csharp%>
+            string str_standard_good_price_ids=",";
+            <%/csharp%>
+            <%loop hotdr dts%>
+            <%csharp%>
+            model = art_bll.GetModel(int.Parse({hotdr[good_id]}.ToString())); 
+            if (str_standard_good_price_ids.IndexOf(","+ (Convert.ToInt32(hotdr["meal_id"]) + "-" + Convert.ToInt32(hotdr["good_id"]) +
+            "-" + Convert.ToDecimal(hotdr["standard_price_id"]) + "-" + Convert.ToDecimal(hotdr["unit_id"]))
+            + ",") > -1) 
+            { 
+            continue; 
+            } 
+            str_standard_good_price_ids += Convert.ToInt32(hotdr["meal_id"])
+            + "-" + Convert.ToInt32(hotdr["good_id"]) + "-" + Convert.ToDecimal(hotdr["standard_price_id"])
+            + "-" + Convert.ToDecimal(hotdr["unit_id"]) + ","; 
+            string money="0.00"; 
+            if(_userinfo!=null)
+            { 
+                money={hotdr[standard_group_price]}.ToString(); 
+                if({hotdr[standard_price_id]}.ToString()!="0")
+                {
+                    money={hotdr[standard_price]}.ToString();
+                }
+            }
+            else
+            { 
+                money={hotdr[sell_price]}.ToString();
+            }
+            <%/csharp%>
+            <dl>
+                <dt><a href="<%linkurl("good_show",{model.id})%>" target="_blank">
+                    <img src="{model.img_url}" width="227" height="227" border="0" alt=""></a></dt>
+                <dd>
+                    {model.title}</dd>
+                <dd>
+                    <strong>￥ {money} </strong><a href="<%linkurl("goods_list",{model.category_id})%>">
+                        <span>更多<%write get_category_title(model.category_id,"")%></span></a><div class="clear">
+                        </div>
+                </dd>
+            </dl>
+            <%/loop%>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <!--物流包装 结束-->
+    <%template src="_footer.html"%>
+</body>
+</html>

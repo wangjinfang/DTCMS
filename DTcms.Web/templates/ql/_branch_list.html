@@ -1,0 +1,20 @@
+﻿<div class="hmrightyou">
+    <div class="hmrightyoubox">
+        <div class="deptop">
+            部门管理</div>
+        <div class="depcenter">
+            <span class="w246">部门名称
+                <input type="button" value="添加" class="entrybtn" onclick="window.location.href='<%linkurl("usercenter","add_branch")%>'">
+            </span><span class="w300">部门人数</span> <span class="w220">操作</span>
+        </div>
+        <div class="depbottom">
+            <ul>
+            <%set DataTable dt_branch=get_branch_list(0, "user_id="+userModel.id,"add_time desc")%>
+            <%loop dr_branch dt_branch%>
+                <li><span class="w246">{dr_branch[title]}</span> <span class="w300">{dr_branch[branch_count]}人</span> <span class="w222 qlchengse">
+                    <a href="<%linkurl("usercenter","edit_branch",0,{dr_branch[id]})%>">修改</a>丨<a href="javascript:;" onclick="del_branch('{dr_branch[id]}')">删除</a></span> </li>
+            <%/loop%> 
+            </ul>
+        </div>
+    </div>
+</div>

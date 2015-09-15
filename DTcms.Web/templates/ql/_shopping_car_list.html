@@ -1,0 +1,84 @@
+﻿<!--购物车start-->
+        <div class="shopping_car">
+            <!--购物车顶部 start-->
+            <div class="ruretop_all">
+                <div class="ruretop">
+                    <img src="<%templateskin%>/images/shopping_caring.jpg" width="93" height="33" style="margin-left: 0" />
+                    <img src="<%templateskin%>/images/gray.jpg" width="281" height="6" style="padding-top: 15px" />
+                    <img src="<%templateskin%>/images/sure_order_gray.jpg" width="104" height="34" />
+                    <img src="<%templateskin%>/images/gray.jpg" width="281" height="6" style="padding-top: 15px" />
+                    <img src="<%templateskin%>/images/pay.jpg" width="104" height="34" />
+                </div>
+                <div class="ruretop_close" onclick="close_shopping()">
+                </div>
+            </div>
+            <!---------------------------------------------------------------------------购物车顶部 end-->
+            <div class="shopping_car_center">
+                <div class="shopping_car_main">
+                    <div class="shopping_car_main_title">
+                    <%if __user==null%>
+                        温馨提示：<span style="color: #f03">登录</span>可享受更多优惠
+                        <%/if%>
+                        </div>
+                    <div class="shopping_car_main_table">
+                        <div class="shopping_car_main_table_top">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="shopping_car_select"  onchange="ck_all(this,'ck_car')"  name="all_select" id="all_select"  />
+                                    全选</li>
+                                <li style="width: 376px">商品</li>
+                                <li>单价</li>
+                                <li>类型</li>
+                                <li style="width: 155px">数量</li>
+                                <li>小计</li>
+                                <li>重量</li>
+                                <li style="width: 104px">操作</li>
+                            </ul>
+                        </div>
+                        <div class="shopping_car_main_table_main">
+                            <ul id="car_list">
+
+                            </ul>
+                        </div>
+                        <div class="shopping_car_main_table_top ">
+                            <ul>
+                                <li style="border-right: none; width: 72px">
+                                    <input type="checkbox" class="shopping_car_select" onchange="ck_all(this,'ck_car')" name="all_select" />
+                                    全选</li>
+                                <li style="width: 748px; color: #f03; text-align: left">
+                                <a href="javascript:;" onclick="del_car_ck('ck_car')" style="color: #f03;">
+                                    删除所选商品</a></li>
+                                <li style="width: 177px; background: url(<%templateskin%>/images/weight_sum.jpg) no-repeat left top;">
+                                    <div class="weight_sum" id="div_weight">
+                                        </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="shopping_car_activity" style=" display:none;">
+                        <ul>
+                            <li style="margin-left: 0;">
+                                <script type="text/javascript" src="/plugins/advert/advert_js.ashx?id=7"></script>
+                            </li>
+
+                            <li>
+                                <script type="text/javascript" src="/plugins/advert/advert_js.ashx?id=8"></script>
+                            </li>
+                            <li><script type="text/javascript" src="/plugins/advert/advert_js.ashx?id=9"></script></li>
+                            <li><script type="text/javascript" src="/plugins/advert/advert_js.ashx?id=10"></script></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--购物车 底部 start-->
+            <div class="rurebottom">
+                <div class="rurebottom_main">
+                    <a href="javascript:;" onclick="close_shopping()" style="background: url('<%templateskin%>/images/continue_shopping.jpg') no-repeat;">
+                    </a><a href="javascript:;" onclick="shopping_to_address()" style="float: right; background: url('<%templateskin%>/images/accounts.jpg') no-repeat;">
+                    </a>
+                    <div class="rurebottom_main_price">
+                        &nbsp;<span style="font-size: 20px; color: #f03" id="span_money">总计：￥</span></div>
+                </div>
+            </div>
+        </div>
+        <!--购物车 底部 end-->

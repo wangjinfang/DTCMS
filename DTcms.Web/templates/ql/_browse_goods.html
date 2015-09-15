@@ -1,0 +1,66 @@
+﻿<script type="text/javascript" src="<%templateskin%>/js/scrollbar.js"></script>
+
+				<div class="hmrightyouteshu">
+					<div class="scheduletop w764">
+						<div class="hmrightyouboxtoptwo">
+							<ul class="kaozuo">
+								<li class="w84"><input type="checkbox" onclick="ck_all(this,'browse_ck')">全选</li>
+								<li class="r15"><input type="button" value="加购物车" class="entrybtn tou8" onclick="browse_batch_to_shopping()"></li>
+								<li class="r15"><input type="button" value="加收藏" class="entrybtn tou8" onclick="batch_to_collect('browse_ck')"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="schedulebox scr_con">
+                    <div id="dv_scroll">
+		<div id="dv_scroll_text" class="Scroller-Container" style="left: 0px; top: -13px;">
+                    
+                    <%set DataTable sr=get_browse_goods_list(0,"user_id="+userModel.id, "time")%>
+                   
+                    <%csharp%>
+                       string datetime1=DateTime.Now.ToString("yyyy-MM-dd");
+                    
+                    <%/csharp%>
+                    <%loop dr_time sr%>
+                     
+				 <%csharp%>
+                  string  datetime2=Convert.ToDateTime({dr_time[add_time]}).ToString("yyyy-MM-dd");
+                    <%/csharp%>
+                        <%if({dr_time__loop__id}<5)%>
+                        <div class="scheduleday">
+                      <%if({dr_time[time]}=={datetime1})%>
+                      <div class="scheduledayleft">
+								<font><img src="<%templateskin%>/images/writebar.png" width="18px" height="68px" alt="白条"></font>
+								<em><img src="<%templateskin%>/images/daydot.png" width="14px" height="14px" alt="圆圈"></em>今天							
+							</div>
+                            <%else%>
+							<div class="scheduledayleft">
+								<%if {dr_time__loop__id}==1%>
+                                <font><img src="<%templateskin%>/images/writebar.png" width="18px" height="68px" alt="白条"></font>
+                                <%/if%>
+								<em><img src="<%templateskin%>/images/daydot.png" width="14px" height="14px" alt="圆圈"></em><%datetostr({dr_time[add_time]},MM 月 d 日)%> 							
+							</div>
+                            <%/if%>
+							<div class="scheduledayright">
+                            <%set DataTable dg=get_browse_goods_list(0,"user_id="+userModel.id+ "and time='"+{datetime2}+"'","add_time desc")%>
+								<ul>
+                                <%loop dr_goods dg%>									
+                                <li>
+										<input class="schedulebtn" name="browse_ck" value="{dr_goods[goods_id]}" type="checkbox">
+										<img width="116px" height="130px" alt="{dr_goods[goods_name]}"  title="{dr_goods[goods_name]}" src="{dr_goods[img_url]}" onclick="window.location.href='/good_show.aspx?id={dr_goods[goods_id]}'">
+									</li>
+									<%/loop%>
+								</ul>
+							</div>
+						</div>
+                        <%/if%>
+						<%/loop%>
+					</div>
+                    <div id="dv_scroll_bar">
+		<div id="dv_scroll_track" class="Scrollbar-Track">
+			<div class="Scrollbar-Handle" style="top: 11.476190476190476px;"></div>
+		</div>
+				</div>
+                </div>
+                </div>
+                	
+	</div><!--dv_scroll_bar end-->  

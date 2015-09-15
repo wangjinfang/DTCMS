@@ -1,0 +1,46 @@
+﻿<script type="text/javascript">
+    function click1(id) {
+
+        window.location.href = '/usercenter.aspx?action=edit_staff&ids=' + id;
+    }
+</script>
+<div class="hmrightyou">
+					<div class="hmrightyoubox">
+						<div class="hmrightyouboxtop">
+							<div class="hmrightyouboxtopone">
+								<span>尊敬的用户：{userModel.user_name}</span>您好 ！ 
+							</div>
+
+							<div class="hmrightyouboxtoptwo">
+								<ul>
+									<li class="w174">用户名</li>
+									<li class="w140">部门</li>
+									<li class="w162">注册时间</li>
+									<li class="w158">状态</li>
+									<li class="w130">操作</li>
+								</ul>
+							</div>
+						</div>
+						<div class="hmrightyouboxbottom">
+							<ul>
+                            <%set DataTable dt_branch=get_user_branch_list(10, page,"parent_id="+userModel.id,"reg_time desc",out totalcount)%>
+                            <%set string pagelist1=get_page_link(10, page, totalcount, "usercenter", action, "__id__")%> <!--取得分页页码列表-->
+                            <%loop dr_branch dt_branch%>
+								<li>
+									<span class="w174">{dr_branch[user_name]}</span>
+									<span class="w140">{dr_branch[branch]}&nbsp;</span>
+									<span class="w162">{dr_branch[reg_time]}</span>
+									<span class="w158"><%if Convert.ToInt32(dr_branch["status"])==0%>启用<%else%>禁用<%/if%></span>
+									<span class="w124 w130">
+                                    <a href="javascript:;" onclick="click1('{dr_branch[id]}')">详情</a>&nbsp;
+                                    <%if Convert.ToInt32(dr_branch["status"])==0%><a href="javascript:;" onclick="Button_on('{dr_branch[id]}','3')">禁用</a><%else%><a href="javascript:;" onclick="Button_on('{dr_branch[id]}','0')">启用</a><%/if%>
+                                    </span>
+								</li>
+                                <%/loop%> 
+							</ul>
+							<div class="fanye fanyetwo">
+							<div class="flickr right">{pagelist1}</div><!--放置页码列表-->
+							</div>
+						</div>
+					</div>
+				</div>

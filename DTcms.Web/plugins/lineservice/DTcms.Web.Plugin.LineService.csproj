@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{41C67B44-C5A4-4A00-94FD-363946380B25}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DTcms.Web.Plugin.LineService</RootNamespace>
+    <AssemblyName>DTcms.Web.Plugin.LineService</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DTcms.BLL, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DTcms.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="DTcms.Common, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DTcms.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DTcms.DBUtility, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DTcms.DBUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="DTcms.Model, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DTcms.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="DTcms.Web.UI, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DTcms.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admin\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\index.aspx.designer.cs">
+      <DependentUpon>index.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\group_list.aspx.cs">
+      <DependentUpon>group_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\group_list.aspx.designer.cs">
+      <DependentUpon>group_list.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\group_edit.aspx.cs">
+      <DependentUpon>group_edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\group_edit.aspx.designer.cs">
+      <DependentUpon>group_edit.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\view.aspx.cs">
+      <DependentUpon>view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\view.aspx.designer.cs">
+      <DependentUpon>view.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="online_js.ashx.cs">
+      <DependentUpon>online_js.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\online_service.cs" />
+    <Compile Include="BLL\online_service_group.cs" />
+    <Compile Include="DAL\online_service.cs" />
+    <Compile Include="DAL\online_service_group.cs" />
+    <Compile Include="Model\online_service.cs" />
+    <Compile Include="Model\online_service_group.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="online_js.ashx" />
+    <None Include="plugin.config" />
+    <None Include="set.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="admin\edit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="admin\index.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="admin\group_list.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="admin\group_edit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="admin\view.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="js\jquery.lazyload.min.js" />
+    <Content Include="js\script.js" />
+    <Content Include="skin\red\email.png" />
+    <Content Include="skin\red\footer.gif" />
+    <Content Include="skin\red\header.gif" />
+    <Content Include="skin\red\main.gif" />
+    <Content Include="skin\red\menu.gif" />
+    <Content Include="skin\red\mini.gif" />
+    <Content Include="skin\red\style.css" />
+    <Content Include="skin\red\tel.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

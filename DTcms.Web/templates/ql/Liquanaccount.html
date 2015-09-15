@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>礼券账户</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+	<link rel="stylesheet" type="text/css" href="css/styletwo.css">
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/public.js" type="text/javascript"></script>
+</head>
+<body>
+	<!--顶部 start-->
+		<div class="top">
+		  <div class="top_main"> 
+			<!--logo start-->
+			<div class="logo"><img src="images/logo.jpg" width="157" height="40"></div>
+			<!--logo end--> 
+			<!--菜单 start-->
+			<div class="top_menu">
+			  <ul>
+				<li><a href="#" target="_blank">首页</a></li>
+				<li><a href="javascript:;" id="purchase" onclick="open_menu()">办公采购</a></li>
+				<li><a href="#">最新活动</a></li>
+				<li id="about_qili"> <a href="#"  >关于企力</a> <a href="#"  id="about_qili_a">帮助中心</a></li>
+			  </ul>
+			</div>
+			<!--菜单 end--> 
+			<!--登录 start-->
+			<div class="top_right">
+			  <div class="top_right_top">
+				<div class="collect"><a onclick="AddFavorite(window.location,document.title)" href="javascript:void(0)" >收藏</a></div>
+				<div class="shop_car"><a href="javascript:;" id="goto_purchase">采购车</a></div>
+				<div class="login_register"> <a href="User_login.html" >登录</a>&nbsp;| <a href="User_Register.html">注册 </a> </div>
+			  </div>
+			  <div class="login_bottom">服务热线：400059171</div>
+			</div>
+			<!--登录 end--> 
+		  </div>
+		</div>
+    <!--顶部 end-->
+
+	<!--hmpublic start-->
+		<div class="hmpublic">
+			<div class="hmleft">
+				<div class="hmlefttop">
+					<dl>
+						<dt><img src="images/hmpic.png" width="51px" height="51px" alt="头像"></dt>
+						<dd>
+							<span>张益鹏</span>
+							<strong>普通客户</strong>
+						</dd>
+					</dl>
+				</div>
+				<div class="hmleftbottom">
+					<dl>
+						<a href="Qiyeuser.html"><dt><img src="images/hmuser.png" width="34px" height="34px" alt="用户管理"></dt>
+						<dd>用户管理</dd></a>
+					</dl>
+					<dl>
+						<a href="Collectiongoods.html"><dt><img src="images/shoucang.png" width="34px" height="34px" alt="我的收藏"></dt>
+						<dd>我的收藏</dd></a>
+					</dl>
+					<dl>
+						<a href="Mydingdan.html"><dt><img src="images/beihuolist.png" width="34px" height="34px" alt="我的订单"></dt>
+						<dd>我的订单</dd></a>
+					</dl>
+					<dl class="hmon">
+						<a href="Pucashaccount.html"><dt><img src="images/house.png" width="34px" height="34px" alt="我的账户"></dt>
+						<dd>我的账户</dd></a>
+					</dl>
+				</div>
+			</div>
+			<div class="hmright">
+				<div class="hmrightzuo">
+					<div class="Cusmanager h367">
+						<ul>
+							<li><a href="Cashaccount.html">现金账户</a></li>
+							<li><a href="Creditaccount.html">积分账户</a></li>
+							<li class="hmerjion"><a href="Liquanaccount.html">礼券账户</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="hmrightyou">
+					<div class="liquan">
+						<div class="liquantop">
+							<ul>
+								<li class="w158">优惠金额</li>
+								<li class="w112">全部<em><img src="images/alljiantou.png" width="10px" height="6px" alt="全部箭头"></em></li>
+								<li class="w126">适用产品</li>
+								<li class="w132">礼券编号</li>
+								<li class="w124">有效期</li>
+								<li class="w114">操作</li>
+							</ul>	
+						</div>
+						<div class="liquanbottom">
+							<ul>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">使用</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">使用</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">使用</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>
+								<li>
+									<span class="w158">50.00元</span>
+									<span class="w112">已使用</span>
+									<span class="w126">全部商品</span>
+									<span class="w132">12345678912345</span>
+									<span class="w124">2014-05-26</span>
+									<span class="w114"><a href="#">删除</a></span>
+								</li>	
+							</ul>
+							<div class="fanye fanyetwo">
+								<img width="262px" height="22px" src="images/fanye.png" alt="翻页">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!--hmpublic end-->
+
+
+	<!--底部 start-->
+<div class="Procure_bottom">
+  <div class="Procure_bottom_1"><a id="open_close" href="javascript:;" ></a></div>
+  <div class="Procure_bottom_2"> 
+    <!--二级菜单1 start-->
+    <ul id="ul_1" class="Procure_bottom_2_ul" style="display:block">
+      <li class="Procure_bottom_li"  style="margin-left:0"> <a href="#"> <img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+    </ul>
+    <!--二级菜单1 end--> 
+    <!--二级菜单2 start-->
+    <ul id="ul_2" class="Procure_bottom_2_ul" style="display:none">
+      <li class="Procure_bottom_li"  style="margin-left:0"> <a href="#"> <img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+    </ul>
+    <!--二级菜单2 end--> 
+    <!--二级菜单3 start-->
+    <ul id="ul_3" class="Procure_bottom_2_ul" style="display:none">
+      <li class="Procure_bottom_li"  style="margin-left:0"> <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+    </ul>
+    <!--二级菜单3 end--> 
+    <!--二级菜单4 start-->
+    <ul id="ul_4" class="Procure_bottom_2_ul" style="display:none">
+      <li class="Procure_bottom_li"  style="margin-left:0"> <a href="#"> <img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+    </ul>
+    <!--二级菜单4 end--> 
+    <!--二级菜单5 start-->
+    <ul id="ul_5" class="Procure_bottom_2_ul" style="display:none">
+      <li class="Procure_bottom_li"  style="margin-left:0"> <a href="#"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href=""><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href=""><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href=""><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href=""><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href=""><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href=""><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href=""><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li class="Procure_bottom_li" > <a href=""> <img src="images/house.jpg" /> 办公文具</a> </li>
+    </ul>
+    <!--二级菜单5 end--> 
+  </div>
+  <!--二级菜单 end--> 
+  <!--一级菜单 start-->
+  <div class="Procure_bottom_3">
+    <ul>
+      <li id="li_1" class="Procure_bottom_li" style="margin-left:0; "> <a href="javascript:;"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li id="li_2" class="Procure_bottom_li"> <a href="javascript:;"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li id="li_3" class="Procure_bottom_li"><a href="javascript:;"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li id="li_4" class="Procure_bottom_li"> <a href="javascript:;"><img src="images/house.jpg" /> 办公文具</a> </li>
+      <li id="li_5" class="Procure_bottom_li"> <a href="javascript:;"><img src="images/house.jpg" /> 办公文具</a> </li>
+    </ul>
+  </div>
+  <!--一级菜单 end--> 
+</div>
+<!--底部 end--> 
+
+<!--覆盖页 start-->
+<div class="black_overlay"  ></div>
+<!--覆盖页 end --> 
+
+<!--购物车start-->
+<div class="shopping_car" > 
+  <!--购物车 顶部start-->
+  <div class="ruretop_all">
+    <div class="ruretop"> <img src="images/shopping_caring.jpg" width="93" height="33" style="margin-left:0"/> <img src="images/gray.jpg" width="281" height="6" style="padding-top:15px"/> <img src="images/sure_order_gray.jpg"  width="104" height="34" /> <img src="images/gray.jpg" width="281" height="6" style="padding-top:15px"/> <img src="images/pay.jpg"  width="104" height="34" /> </div>
+    <div class="ruretop_close" onclick="close_shopping()" ></div>
+  </div>
+  <!--购物车 顶部end-->
+  <div class="shopping_car_center">
+    <div class="shopping_car_main">
+      <div class="shopping_car_main_title">温馨提示：<span style="color:#f03">登录</span>课享受更多优惠</div>
+      <div class="shopping_car_main_table">
+        <div class="shopping_car_main_table_top">
+          <ul>
+            <li>
+              <input type="checkbox" class="shopping_car_select" name="all_select"/>
+              全选</li>
+            <li style="width:376px">商品</li>
+            <li>单价</li>
+            <li>类型</li>
+            <li style="width:155px">数量</li>
+            <li>小计</li>
+            <li>重量</li>
+            <li style="width:104px">操作</li>
+          </ul>
+        </div>
+        <div class="shopping_car_main_table_main">
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <input type="checkbox" name=""  />
+                </li>
+                <li style="height: 96px;
+    padding: 13px 0 0 13px;
+    width: 363px;"><a href="#"><img src="images/shoppingcar_img.jpg" width="90" height="90"/></a><a href="#">
+                  <p>计算机计算机计算机教室 10/盒</p>
+                  <p style="color:#666">计算机计算机计算机教室</p>
+                  </a></li>
+                <li>￥89.00</li>
+                <li>40.5</li>
+                <li style="width:155px"><img src="images/reduce.jpg" width="14" height="14" />
+                  <input type="text" class="inputCount" value="1" name="" />
+                  <img src="images/add.jpg" width="14" height="14" /></li>
+                <li><strong>￥11.00</strong></li>
+                <li>0.01</li>
+                <li class="last_li" style="width:88px;
+padding-left:17px; height:62px;border-right:none;"><a href="#" >删除</a><a href="#">收藏</a></li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li>
+                  <input type="checkbox" name=""  />
+                </li>
+                <li style="height: 96px;
+    padding: 13px 0 0 13px;
+    width: 363px;"><a href="#"><img src="images/shoppingcar_img.jpg" width="90" height="90"/></a><a href="#">
+                  <p>计算机计算机计算机教室 10/盒</p>
+                  <p style="color:#666">计算机计算机计算机教室</p>
+                  </a></li>
+                <li>￥89.00</li>
+                <li>40.5</li>
+                <li style="width:155px"><img src="images/reduce.jpg" width="14" height="14" />
+                  <input type="text" class="inputCount" value="1" name="" />
+                  <img src="images/add.jpg" width="14" height="14" /></li>
+                <li><strong>￥11.00</strong></li>
+                <li>0.01</li>
+                <li class="last_li" style="width:88px;
+padding-left:17px; height:62px;border-right:none;"><a href="#" >删除</a><a href="#">收藏</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="shopping_car_main_table_top ">
+          <ul>
+            <li style="border-right:none;width:72px">
+              <input type="checkbox" class="shopping_car_select" name="all_select"/>
+              全选</li>
+            <li style="width:748px;color:#f03;text-align:left"><a href="#" style="color:#f03;">删除所选商品</a></li>
+            <li style="width:177px;background:url(images/weight_sum.jpg) no-repeat left top;">
+              <div class="weight_sum">4.41kg</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="shopping_car_activity">
+        <ul>
+          <li style="margin-left:0;"> <a href="#"><img src="images/shopping_car_activity.jpg" width="247" height="114" /> </a></li>
+          <li > <a href="#"><img src="images/shopping_car_activity.jpg" width="247" height="114" /> </a></li>
+          <li > <a href="#"><img src="images/shopping_car_activity.jpg" width="247" height="114" /> </a></li>
+          <li > <a href="#"><img src="images/shopping_car_activity.jpg" width="247" height="114" /> </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <!--购物车 底部 start-->
+  <div class="rurebottom">
+    <div class="rurebottom_main"> <a href="javascript:;" onclick="close_shopping()" style="background:url('images/continue_shopping.jpg') no-repeat ;"></a> <a href="#" style="float:right;background:url('images/accounts.jpg') no-repeat ;"></a>
+      <div class="rurebottom_main_price">&nbsp;<span style="font-size:20px;color:#f03">总计：￥333.00</span></div>
+    </div>
+  </div>
+  <!--购物车 底部 end--> 
+</div>
+<!--购物车 end-->
+</body>
+</html>

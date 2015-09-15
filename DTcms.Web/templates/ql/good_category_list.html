@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title><%write get_category_title(category_id,"购物商城")%> - 导购 - {config.webname} - 性价比最高的办公用品商城</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+    <link href="<%templateskin%>/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.form.min.js"></script>
+    <script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+    <script src="<%templateskin%>/js/nan.js" type="text/javascript"></script>
+    <script src="<%templateskin%>/js/scroll.js" type="text/javascript"></script>
+</head>
+<body>
+    <!--顶部 start-->
+    <%template src="_header.html"%>
+    <!--顶部 end-->
+    <!--三步导购 开始-->
+    <div class="Guide">
+        <div class="guidestep">
+            <ul>
+                <li><a href="#" class="done" style="cursor: default;"><i></i>选大类</a></li>
+                <li><span class="spandone"></span></li>
+                <li><a href="#" class="on" style="cursor: default;"><i>2</i>选小类</a></li>
+                <li><span></span></li>
+                <li><a href="#" style="cursor: default;"><i>3</i>选属性</a></li>
+                <div class="clear">
+                </div>
+            </ul>
+        </div>
+        <div class="guidelistsnr">
+            <div class="button_one">
+                <ul id="one_ul">
+                    <%set DataTable category_list_tit=get_category_child_list("goods", 0)%>
+                    <%loop cdr2_tit category_list_tit%>
+                    <li name="li_one" <%if category_id==Convert.ToInt32(cdr2_tit["id"])%>class="onehover" <%/if%>><a
+                        href="#">
+                        <img src="{cdr2_tit[img_url]}" />{cdr2_tit[title]}</a>
+                        <div class="button_two" <%if category_id==Convert.ToInt32(cdr2_tit["id"])%> style=" display:block;"<%/if%>>
+                            <ul name="ul_two">
+                                <%set DataTable category_list_tit1=get_category_child_list("goods", Convert.ToInt32(cdr2_tit["id"]))%>
+                                <%loop cdr3_tit category_list_tit1%>
+                                <li <%if category_id==Convert.ToInt32(cdr2_tit["id"]) && cdr3_tit__loop__id==1%>class="twohover"<%/if%> name="two_li"><a href="#">
+                                    <img src="{cdr3_tit[img_url]}" />{cdr3_tit[title]}</a>
+                                     <div name="div_three" style="position: absolute;left: 96px; width:auto; min-height:710px; top: 0px;background: white;<%if category_id==Convert.ToInt32(cdr2_tit["id"]) && cdr3_tit__loop__id!=1%>display:none;<%/if%>">
+                                        <ul style="padding:0px;background: white;width:800px;margin-left: 40px;">
+                                        <%set DataTable category_list_tit2=get_category_child_list("goods", Convert.ToInt32(cdr3_tit["id"]))%>
+                                        <%loop cdr4_tit category_list_tit2%>
+                                            <li style="float:left; text-align:center;margin-right: 34px;height: 117px; width:99px; margin-bottom:30px;"><a href="<%linkurl("goods_list",{cdr4_tit[id]})%>" target="_blank" style=" height:20px; width:99px;">
+                                            <img src="{cdr4_tit[img_url]}" style=" width:99px; height:97px;"  border="0" alt="" >{cdr4_tit[title]}</a></li>
+                                        <%/loop%>
+                                            
+                                        </ul>
+                                    </div>
+                                    </li>
+                                <%/loop%>
+                            </ul>
+                        </div>
+                    </li>
+                    <%/loop%>
+                    <div class="clear">
+                    </div>
+                </ul>
+            </div>
+            
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <!--三步导购 结束-->
+    <!--Footer-->
+    <%template src="_footer.html"%>
+    <!--/Footer-->
+    <!--左侧切换-->
+    <script type="text/javascript">
+
+
+        $("[name=li_one]").mouseover(function () {
+            //一级类别
+
+
+
+
+            $(this).siblings().removeClass("onehover");
+            //$(this).addClass("good_category_on1");
+            $(this).css("background", "url(<%templateskin%>/images/guide/second2_21.jpg) center right no-repeat");
+            $(this).siblings().css("background", "none");
+            $(this).find(".button_two").show();
+            $(this).siblings().find(".button_two").hide();
+        });
+
+
+        $("[name=two_li]").mouseover(function () {
+            $("[name=two_li]").removeClass("twohover");
+            $(this).css("background", "url(<%templateskin%>/images/guide/second2_13.jpg) center right no-repeat");
+            $(this).siblings().css("background", "none");
+            $("[name=div_three]").each(function () {
+                $(this).hide();
+            });
+            $(this).find("[name=div_three]").show();
+        });
+    </script>
+    <!--右侧切换-->
+</body>
+</html>

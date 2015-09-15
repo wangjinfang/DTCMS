@@ -1,0 +1,138 @@
+﻿ <div class="Address_information">
+            <!--填写订单地址 顶部 start-->
+            <div class="ruretop_all">
+                <div class="ruretop">
+                    <img src="<%templateskin%>/images/shopping_car_img.jpg" width="93" height="33" style="margin-left: 0" />
+                    <img src="<%templateskin%>/images/green.jpg" width="281" height="6" style="padding-top: 15px" />
+                    <img src="<%templateskin%>/images/sure_order_img.jpg" width="104" height="34" />
+                    <img src="<%templateskin%>/images/gray.jpg" width="281" height="6" style="padding-top: 15px" />
+                    <img src="<%templateskin%>/images/pay.jpg" width="104" height="34" />
+                </div>
+                <div class="ruretop_close" onclick="close_shopping()">
+                </div>
+            </div>
+            <!--填写订单地址 顶部 end-->
+            <!--填写订单地址 内容start-->
+            <div class="rurecontent">
+                <dl>
+                    <dt>收货信息</dt>
+                    <dd>
+                        <ul>
+                        <!--10月13号添加内容开始-->
+
+
+                        <div class="laterplus" id="div_choose_address">
+<li>
+ <span class="input_text">已填地址：<span style="color:#F03">*&nbsp;</span></span>
+<select id="sel_address" name="sel_address" class="select_connet" onchange="change_address()" style="width:740px;" >
+                
+              </select>
+
+<input type="button" value="添加地址" onclick="show_add_address('div_add_address')" style="height:30px;float:left;"/>
+</li>
+</div>
+<!--10月13号添加内容结-->
+<form id="add_form">
+<div class="lateradd" id="div_add_address">
+
+                            <li><span class="input_text">收货人<span style="color: #F03">*&nbsp;</span></span>
+                                <input class="sure_order_input" type="text" value="" id="car_consignee" name="car_consignee" />
+                                <span class="input_text">手机号码<span style="color: #F03">*&nbsp;</span></span>
+                                <input class="sure_order_input" type="text" value="" id="car_consignee_mobile" name="car_consignee_mobile" />
+                                 <span class="input_text">公司全称<span style="color: #F03">*&nbsp;</span></span>
+                                <input class="sure_order_input" type="text" value="" id="car_consignee_company" name="car_consignee_company" />
+                            </li>
+                            <li><span class="input_text">所在地区<span style="color: #F03">*&nbsp;</span></span>
+                                
+
+                                <select class="select_connet" id="car_province" name="car_province" onchange="province_change('car_province','car_city')">
+                                <option value="">-请选择-</option>
+                                <%set DataTable dt_province1=get_province()%>
+                                <%loop dr_province1 dt_province1%>
+									<option value="{dr_province1[ProvinceID]}">{dr_province1[ProvinceName]}</option>
+                                    <%/loop%>
+								</select>
+								<select class="select_connet" id="car_city" name="car_city" onchange="city_change('car_city','car_district')">
+									<option value="">-请选择-</option>
+								</select>
+								<select class="select_connet" id="car_district" name="car_district">
+									<option value="">-请选择-</option>
+								</select> 
+                                <span class="input_text">详细地址<span style="color: #F03">*&nbsp;</span></span>
+                                <input class="sure_order_input" type="text" value="" id="car_address" name="car_address" style="width: 360px" />
+                            </li>
+                            <li>
+                                <span class="input_text">或固定电话</span>
+                                <input class="sure_order_input" type="text" id="car_zip_phone" name="car_zip_phone" value="" style="width: 79px;
+                                    margin-right: 0" />
+                                <span style="float: left; margin: auto 10px">- </span>
+                                <input class="sure_order_input" type="text" id="car_phone" name="car_phone" value="" />
+                                <input type="button" value="保存地址" onclick="car_add_address()" style="height:30px;float:left;" id="address_btn"/>
+                            </li>
+                            </div>
+                            </form>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl style="border: 1px solid #C5C5C5;margin-top: 10px;"><li><span class="input_text">配送方式<span style="color: #F03">*&nbsp;</span></span>
+                <%set DataTable list2=get_express_list(0, "is_lock=0")%> <!--取得一个DataTable-->
+      <%loop dr2 list2%>
+        
+        <label style=" float:left"><input type="radio" name="rd_freight" value="{dr2[id]}" onclick="sum_freight('{dr2[id]}','{dr2[express_fee]}')" />{dr2[title]}
+        
+        <em>费用：{dr2[express_fee]}元</em></label> 
+      <%/loop%>
+               <input type="hidden" id="hd_freight" name="hd_freight" value="0" /> 
+               <input type="hidden" id="hd_address" name="hd_address" value="0" />
+               
+                 
+               <input type="hidden" id="hd_amount"   value="0.00" />
+
+                                <div class="input_text_right" style="margin-left: 30px;">
+                                    您所在的区域订<span style="color: #F03">199元</span>单满可免费送货，这是您的选择</div>
+                            </li></dl>
+                <dl style="margin-top: 10px;">
+                    <dt>商品信息</dt>
+                   <!--10月13号修改开始-->
+        <dd style="height:250px;overflow-y:scroll;overflow-x:hidden;">
+<!--10月13号修改结束-->
+                        <ul>
+                        <!--10月13号添加开始-->
+<div class="shopping_car_main_table">
+          <div class="shopping_car_main_table_top">
+            <ul class="first">
+              <li style="width:376px">商品</li>
+              <li>单价</li>
+              <li>类型</li>
+              <li>数量</li>
+              <li>小计</li>
+              <li>重量</li>
+            </ul>
+          </div>
+          <div class="shopping_car_main_table_main">
+            <ul class="first" id="car_address_list">
+            
+            </ul>
+            
+          </div>
+        </div>
+
+<!--10月13号添加结束-->
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <!--填写订单地址 内容end-->
+            <!--填写订单地址 底部 start-->
+            <div class="rurebottom">
+                <div class="rurebottom_main">
+                    <a href="javascript:;" onclick="close_shopping()" style="background: url('<%templateskin%>/images/continue_shopping.jpg') no-repeat;">
+                    </a><a href="javascript:;" onclick="Receipt_to_surepay()" style="float: right; background: url('<%templateskin%>/images/accounts.jpg') no-repeat;">
+                    </a>
+                    <div class="rurebottom_main_price">
+                        配送运费：<span style="color: #f03; margin-right: 23px" id="span_freight">￥0.00</span>&nbsp;<span style="font-size: 20px;
+                            color: #f03" id="span_address_price">总计：￥0.00</span></div>
+                </div>
+            </div>
+            <!--填写订单地址 底部 end-->
+        </div>

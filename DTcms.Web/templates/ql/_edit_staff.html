@@ -1,0 +1,59 @@
+﻿<%csharp%>
+DTcms.Model.users model_user=new DTcms.BLL.users().GetModel(ids);
+if(model_user==null)
+{
+HttpContext.Current.Response.Redirect(linkurl("error", "?msg=" + Utils.UrlEncode("出错啦，您要浏览的页面不存在或已删除啦！")));
+return;
+}
+<%/csharp%>
+
+
+<div class="hmrightyou">
+
+					<div class="hmrightyoubox">
+						<div class="deptop">添加员工</div>
+                        <form id="form2">
+						<div class="addstaff">
+							<div class="addstaffbox">
+								<span class="qlleft">所在部门：</span>
+								<select class="selectone qlleft bghui"  name="branch_id" id="branch_id">
+									<option value="">请选择部门</option>
+                                    <%set DataTable dr=get_branch_title_list(Convert.ToInt32({userModel.id}))%>
+                                    <%foreach(DataRow dt in dr.Rows)%>
+                                    <option value="{dt[id]}"<%if(Convert.ToInt32({dt[id]})=={model_user.branch_id})%> selected="selected"<%/if%>>{dt[title]}</option>
+                                    <%/foreach%>
+                                    								</select>
+								
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">账户名：</span>
+								<input type="text" class="qltxt txt150"name="username" id="username" value="{model_user.user_name}" disabled="disabled">
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">密码：</span>
+								<input type="password" class="qltxt txt150"name="psd" id="psd" value="{model_user.password}" >
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">确认密码：</span>
+								<input type="password" class="qltxt txt150"name="psd1" id="psd1">
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">姓名：</span>
+								<input type="text" class="qltxt txt150" name="real_name" id="real_name" value="{model_user.real_name}">
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">电话号码：</span>
+								<input type="text" class="qltxt txt150" name="phone" id="phone" value="{model_user.telphone}" />
+							</div>
+							<div class="addstaffbox mb15">
+								<span class="qlleft lh28">邮箱：</span>
+								<input type="text" class="qltxt txt150" name="email" id="email" value="{model_user.email}">
+							</div>
+							<div class="addstaffbox">
+								<span class="qlleft lh28"></span>
+								<input class="qlbtn" type="button" width="92px" height="29px"  onclick="Submit2('{model_user.id}')">
+							</div>
+						</div>
+                        </form>
+					</div>
+				</div>

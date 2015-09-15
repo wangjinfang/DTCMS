@@ -1,0 +1,24 @@
+/*css document*/
+body{font-size:12px;padding:0;margin:0;font-family:"微软雅黑";background:#EC302F;}
+h1,h2,h3,p,ul,li,dl,dt,dd,img,p,button,input{padding:0;margin:0;border:none;}
+ul,li{list-style:none;}
+a:link,a:visited{font-size:12px;text-decoration:none;}
+a:hover{text-decoration:none;}
+/*中奖顶部*/
+.prize_top{width:100%;height:552px;margin:0 auto;background:url(../images/prizetop.jpg) top center no-repeat;}
+.prize_name{width:736px;height:470px;margin:0 auto 14px;}
+.prize_namel{width:465px;height:470px;float:left;}
+.prize_namer{width:201px;height:324px;background:url(../images/prize_namer.jpg) no-repeat;float:right;padding:116px 18px 30px 52px;}
+.prize_name_list{width:201px;height:324px;}
+.prize_name_list ul{width:201px;height:324px;}
+.prize_name_list ul li{width:201px;height:25px;line-height:28px;color:#7f6100;font-size:14px;overflow:hidden;}
+/*奖品区域*/
+.giftbox{width:100%;height:178px;background:#FFD042;padding-top:28px;}
+.gift{width:1084px;height:154px;margin:0 auto;}
+.gift_left{width:900px;height:154px;float:left;}
+.gift_left ul{width:900px;height:154px;}
+.gift_left ul li{float:left;width:216px;height:154px;margin-right:9px;background:#fff;}
+.gift_right{width:184px;height:154px;float:right;text-align:center;}
+.gift_right p{font-size:24px;color:#ec302f;font-family:"宋体";font-weight:bold;}
+.gift_right strong{margin:10px 0;display:block;text-align:center;font-family:Impact;font-size:78px;margin:-5px 0;}
+.getprize{background:url(../images/getprize.jpg) no-repeat;width:142px;height:39px;font-size:18px;color:#fff;text-align:center;font-family:"微软雅黑";cursor:pointer;}

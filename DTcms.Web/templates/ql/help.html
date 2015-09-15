@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{model.title} - {config.webname} - 性价比最高的办公用品商城</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+    <link href="<%templateskin%>/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="<%templateskin%>/js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.form.min.js"></script> 
+    <script src="<%templateskin%>/js/public.js" type="text/javascript"></script>
+        <script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+    <script src="<%templateskin%>/js/nan.js" type="text/javascript"></script>
+</head>
+<body >
+    <!--顶部 start-->
+    <%template src="_header.html"%>
+    <!--顶部 end-->
+    <!--企业服务详情页 开始-->
+    <div class="qydetails">
+        <!--企业服务详情页左侧 开始-->
+        <div class="qyservicel" style="background: #F2F2F2;">
+            <ul>
+                
+                <li><a href="<%linkurl("about")%>">关于我们</a></li>
+                <li class="on"><a href="<%linkurl("help")%>">帮助中心</a></li>
+            </ul>
+        </div>
+        <div class="qydetailsr" style="margin-top: 10px;">
+            {model.content}
+        </div>
+        <!--企业服务详情页左侧 结束-->
+    </div>
+    <!--企业服务详情页 结束-->
+    <!--底部 start-->
+    <%template src="_footer.html"%>
+    <!--底部 end-->
+    <!--左侧箭头收缩效果 开始-->
+    <script type="text/javascript">
+        $(".qyname i").click(function () {
+            $(".qypic").slideToggle("normal");
+            if ($(this).hasClass("detarrow")) {
+                //如果存在就这里
+                $(this).removeClass("detarrow");
+            } else {
+                //这里的代码
+                $(this).addClass("detarrow");
+            }
+        });
+    </script>
+    <!--左侧箭头收缩效果 结束-->
+</body>
+</html>

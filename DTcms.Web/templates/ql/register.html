@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{config.webname}</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+<link href="<%templateskin%>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.form.min.js"></script> 
+<script src="<%templateskin%>/js/public.js" type="text/javascript"></script>
+<script src="<%templateskin%>/js/nan.js" type="text/javascript"></script>
+</head>
+
+<body>
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+<!--注册页面 内容 start-->
+<%if action==""%>
+<div class="User_Register_main">
+  <div class="User_Register_main_left"><img src="<%templateskin%>/images/logincontentringht.jpg" width="604" height="730"  /></div>
+  <div class="User_Register_main_right">
+  <form id="form1">
+    <div class="User_Register_main_right_main">
+      <p>邮箱:</p>
+      <input type="text" name="email" id="email" class="User_login_main_right_text" value=""/>
+      <p>用户名:</p>
+      <input type="text" name="username" id="username" class="User_login_main_right_text" value=""/>
+      <p>密码:</p>
+      <input type="password" name="pwd" id="pwd"  value=""  class="User_login_main_right_text"/>
+      <p>确认密码:</p>
+      <input type="password" name="pwd1" id="pwd1"  value=""  class="User_login_main_right_text"/>
+      <input type="hidden" id="hd_user_type" name="hd_user_type" value="2" />
+      <p style="margin-bottom:16px">
+        <input type="checkbox" name="bike" />
+        我以阅读并同意<a style="color:#ff582b;font-size: 14px;" href="#">《企力办公隐私协议》</a></p>
+      <input type="button" id="btn_register" class="login_button" value="注 册" onclick="register()">
+      <div class="User_Register_main_right1">已有企力账号？<a href="<%linkurl("login")%>">立即登录</a></div>
+      <div class="User_Register_main_right2">
+        <p>你还可以使用这些账户直接登录</p>
+        <a href="#" style="margin-left:0"><img src="<%templateskin%>/images/other_login_way.jpg" width="92" height="32" /></a>
+        <a href="#"><img src="<%templateskin%>/images/p.jpg" width="92" height="32" /></a>
+        <a href="#"><img src="<%templateskin%>/images/zfb.jpg"width="92" height="32" /></a>
+        
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+<%else if action=="sendmail"%>
+<!--发送邮箱验证-->
+      <div class="msg_tips">
+        <div class="ico warning"></div>
+        <div class="msg">
+          <strong>注册成功，您的账户目前处于未验证状态！</strong>
+          <p>欢迎您成为本站会员，您的账户目前处于未验证状态，请尽快登录您的注册邮箱激活该会员账户。</p>
+          <p>系统已经自动为您发送了一封验证邮件，如果您长时间未收到邮件，请点击这里<a href="javascript:;" onclick="SendEmail('{username}', '{config.webpath}tools/submit_ajax.ashx?action=user_verify_email');">重新发送邮件</a>！</p>
+          <i>温馨提示：邮件验证有效期为
+          <%if {uconfig.regemailexpired}>0%>
+          {uconfig.regemailexpired}天
+          <%else%>
+          无限制
+          <%/if%>
+          </i>
+        </div>
+      </div>
+      <!--发送邮箱验证-->
+<%else if action=="checkmail"%>
+<div class="msg_tips">
+        <div class="ico"></div>
+        <div class="msg">
+          <strong>恭喜您{username}，已通过邮件激活会员账户</strong>
+          <p>您的会员账户已经激活啦，从现在起，你可以享受更多的会员服务，还等什么呢？</p>
+          <p>赶快点击这里返回<a href="<%linkurl("index")%>">首页</a>，点击这里<a href="<%linkurl("usercenter","index")%>">进入会员中心</a>吧！</p>
+        </div>
+      </div>
+      <%else if action=="checkerror"%>
+      <!--注册验证失败-->
+      <div class="msg_tips">
+        <div class="ico error"></div>
+        <div class="msg">
+          <strong>出错啦，该用户不存在或验证已过期！</strong>
+          <p>无法验证你的账户，不知神马原因，可能是你的用户名不存在或者验证码已经过期啦！</p>
+          <p>不过别担心，如果您还记得你的会员名称的话，点击这里<a href="<%linkurl("login")%>">进入会员中心</a>吧。</p>
+        </div>
+      </div>
+      <!--注册验证失败-->
+      <%else if action=="succeed"%>
+      <!--注册成功-->
+      <div class="msg_tips">
+        <div class="ico"></div>
+        <div class="msg">
+          <strong>恭喜您{username}，成功注册成为本站会员！</strong>
+          <p>您已经是本站的会员啦，从现在起，你可以享受更多的会员服务，还等什么呢？</p>
+          <p>赶快点击这里返回<a href="<%linkurl("index")%>">首页</a>或点击这里<a href="<%linkurl("usercenter","index")%>">进入会员中心</a>吧！</p>
+        </div>
+      </div>
+      <!--注册成功-->
+      <%/if%>
+<!--注册页面 内容 end--> 
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

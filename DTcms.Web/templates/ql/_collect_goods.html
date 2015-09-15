@@ -1,0 +1,47 @@
+﻿<script type="text/javascript">
+        function selectAll(checkbox) {
+            $('[name=collect_good]').prop('checked', $(checkbox).prop('checked'));
+        }
+    
+    
+
+</script>
+			
+            
+            	<div class="hmrightyou">
+					<div class="collectbigbox">
+						<div class="accountfenpeitop w764">
+							<div class="hmrightyouboxtoptwo">
+								<ul class="kaozuo">
+									<li class="w84"><input type="checkbox" onclick="selectAll(this);">全选</li>
+									<li><input type="button" value="加购物车" class="entrybtn tou8" onclick="collect_batch_to_shopping()"></li>
+								</ul>
+								
+							</div>
+						</div>
+                        <%set DataTable dt=get_collect_list(20,page,"user_id="+userModel.id,"add_time desc", out totalcount)%>
+                         <%set string pagelist2=get_page_link(20, page, totalcount, "usercenter", action, "__id__")%> <!--取得分页页码列表-->
+                         
+
+						<div class="collectbox">
+							<ul>
+                            <%loop lst dt%>
+								<li <%if({lst__loop__id}==1|| {lst__loop__id}==6||{lst__loop__id}==11||{lst__loop__id}==16)%>class="hmnoleft"<%/if%>>
+                                <input type="checkbox" class="collectbtn" name="collect_good" value="{lst[goods_id]}">
+
+                                <a href="<%linkurl("good_show",{lst[goods_id]})%>"><img src="{lst[img_url]}" width="116px" height="130px" title="{lst[goods_name]}" alt="{lst[goods_name]}"></a>
+
+                                </li>
+							
+                                <%/loop%>
+							</ul>
+						</div>
+						
+							
+						
+						<div class="fanye fanyetwo fanyetree">
+							<div class="flickr right">{pagelist2}</div>
+						</div>
+					</div>
+				</div>
+			
