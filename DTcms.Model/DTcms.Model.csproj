@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="advert.cs" />
+    <Compile Include="advert_banner.cs" />
     <Compile Include="article.cs" />
     <Compile Include="article_albums.cs" />
     <Compile Include="article_attach.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="channel_category.cs" />
     <Compile Include="channel_field.cs" />
     <Compile Include="express.cs" />
+    <Compile Include="floor.cs" />
     <Compile Include="mail_template.cs" />
     <Compile Include="manager.cs" />
     <Compile Include="manager_log.cs" />
