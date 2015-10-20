@@ -58,9 +58,9 @@ namespace DTcms.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into " + databaseprefix + "floors(");
-            strSql.Append("belongchannel,floorname,title,color,remark,add_time,status)");
+            strSql.Append("belongchannel,floorname,title,color,remark,add_time,status,sort_id)");
             strSql.Append(" values (");
-            strSql.Append("@belongchannel,@floorname,@title,@color,@remark,@add_time,@status)");
+            strSql.Append("@belongchannel,@floorname,@title,@color,@remark,@add_time,@status,@sort_id)");
             strSql.Append(";select @@IDENTITY");
             SqlParameter[] parameters = {
 					new SqlParameter("@belongchannel", SqlDbType.TinyInt,1),
@@ -69,7 +69,8 @@ namespace DTcms.DAL
                     new SqlParameter("@color", SqlDbType.NVarChar,50),
 					new SqlParameter("@remark", SqlDbType.NVarChar,255),					
 					new SqlParameter("@add_time", SqlDbType.DateTime),
-                    new SqlParameter("@status", SqlDbType.TinyInt,1)};
+                    new SqlParameter("@status", SqlDbType.TinyInt,1),
+                     new SqlParameter("@sort_id", SqlDbType.Int,4)};
             parameters[0].Value = model.belongchannel;
             parameters[1].Value = model.floorname;
             parameters[2].Value = model.title;
@@ -77,6 +78,7 @@ namespace DTcms.DAL
             parameters[4].Value = model.remark;
             parameters[5].Value = model.add_time;
             parameters[6].Value = model.status;
+            parameters[7].Value = model.sort_id;
             object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);
             if (obj == null)
             {
@@ -101,6 +103,7 @@ namespace DTcms.DAL
             strSql.Append("remark=@remark,");
             strSql.Append("add_time=@add_time,");
             strSql.Append("status=@status");
+            strSql.Append("sort_id=@sort_id");
             strSql.Append(" where id=@id");
             SqlParameter[] parameters = {
 					new SqlParameter("@belongchannel", SqlDbType.TinyInt,1),
@@ -110,6 +113,7 @@ namespace DTcms.DAL
 					new SqlParameter("@remark", SqlDbType.NVarChar,255),
 					new SqlParameter("@add_time", SqlDbType.DateTime),
 					new SqlParameter("@status", SqlDbType.TinyInt,1),
+                    new SqlParameter("@sort_id", SqlDbType.Int,4),
 					new SqlParameter("@id", SqlDbType.Int,4)};
             parameters[0].Value = model.belongchannel;
             parameters[1].Value = model.floorname;
@@ -118,7 +122,8 @@ namespace DTcms.DAL
             parameters[4].Value = model.remark;
             parameters[5].Value = model.add_time;
             parameters[6].Value = model.status;
-            parameters[7].Value = model.id;
+            parameters[7].Value = model.sort_id;
+            parameters[8].Value = model.id;
 
             int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
@@ -129,6 +134,16 @@ namespace DTcms.DAL
             {
                 return false;
             }
+        }
+        /// <summary>
+        /// 修改一列数据
+        /// </summary>
+        public void UpdateField(int id, string strValue)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update " + databaseprefix + "floors set " + strValue);
+            strSql.Append(" where id=" + id);
+            DbHelperSQL.ExecuteSql(strSql.ToString());
         }
 
         /// <summary>
@@ -173,7 +188,7 @@ namespace DTcms.DAL
         public Model.floor GetModel(int id)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 id,belongchannel,floorname,title,color,remark,add_time,status from " + databaseprefix + "floors ");
+            strSql.Append("select  top 1 id,belongchannel,floorname,title,color,remark,add_time,status,sort_id from " + databaseprefix + "floors ");
             strSql.Append(" where id=@id");
             SqlParameter[] parameters = {
 					new SqlParameter("@id", SqlDbType.Int,4)};
@@ -215,7 +230,11 @@ namespace DTcms.DAL
                 {
                     model.status = (ds.Tables[0].Rows[0]["status"].ToString());
                 }
-              
+                if (ds.Tables[0].Rows[0]["sort_id"] != null && ds.Tables[0].Rows[0]["sort_id"].ToString() != "")
+                {
+                    model.sort_id = int.Parse(ds.Tables[0].Rows[0]["sort_id"].ToString());
+                }
+
                 return model;
             }
             else
@@ -230,7 +249,7 @@ namespace DTcms.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,belongchannel,floorname,title,color,remark,add_time,status ");
+            strSql.Append("select id,belongchannel,floorname,title,color,remark,add_time,status,sort_id ");
             strSql.Append(" FROM " + databaseprefix + "floors ");
             if (strWhere.Trim() != "")
             {
@@ -250,7 +269,7 @@ namespace DTcms.DAL
             {
                 strSql.Append(" top " + Top.ToString());
             }
-            strSql.Append(" id,belongchannel,floorname,title,color,remark,add_time,status ");
+            strSql.Append(" id,belongchannel,floorname,title,color,remark,add_time,status,sort_id ");
             strSql.Append(" FROM " + databaseprefix + "floors ");
             if (strWhere.Trim() != "")
             {
