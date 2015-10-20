@@ -39,7 +39,7 @@
 <!--/工具栏-->
 
 <!--列表-->
-<asp:Repeater ID="rptList" runat="server" onitemdatabound="rptList_ItemDataBound">
+<asp:Repeater ID="rptList" runat="server" onitemdatabound="rptList_ItemDataBound" OnItemCommand="rptList_ItemCommand">
 <HeaderTemplate>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ltable">
   <tr>
@@ -48,7 +48,7 @@
     <th align="left">类别名称</th>
     <th align="left" width="12%">调用别名</th>
     <th align="left" width="12%">排序</th>
-    <th width="12%">操作</th>
+    <th width="22%">操作</th>
   </tr>
 </HeaderTemplate>
 <ItemTemplate>
@@ -57,6 +57,7 @@
       <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" style="vertical-align:middle;" />
       <asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
       <asp:HiddenField ID="hidLayer" Value='<%#Eval("class_layer") %>' runat="server" />
+          <asp:HiddenField ID="hidIsRecommended" Value='<%#Eval("IsRecommended") %>' runat="server" />
     </td>
     <td><%#Eval("id")%></td>
     <td>
@@ -65,7 +66,9 @@
     </td>
     <td><%#Eval("call_index")%></td>
     <td><asp:TextBox ID="txtSortId" runat="server" Text='<%#Eval("sort_id")%>' CssClass="sort" onkeydown="return checkNumber(event);" /></td>
-    <td align="center">
+    <td align="center" style="width:500px">
+        <asp:LinkButton ID="lbtnRecommended" runat="server" CommandArgument='<%#Eval("id")%>' CommandName="Recommended" Text="设置为主推类目" ></asp:LinkButton>
+        <asp:LinkButton ID="lbtnCancel" runat="server" CommandArgument='<%#Eval("id")%>' CommandName="CancelRecommended" Text="取消设置"></asp:LinkButton>
       <a href="category_edit.aspx?action=<%#DTEnums.ActionEnum.Add %>&channel_id=<%#this.channel_id %>&id=<%#Eval("id")%>">添加子类</a>
       <a href="category_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&channel_id=<%#this.channel_id %>&id=<%#Eval("id")%>">修改</a>
     </td>

@@ -45,11 +45,17 @@ namespace DTcms.Web.admin.article
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
                 Literal LitFirst = (Literal)e.Item.FindControl("LitFirst");
+                LinkButton lbtnRecommended = (LinkButton)e.Item.FindControl("lbtnRecommended");
                 HiddenField hidLayer = (HiddenField)e.Item.FindControl("hidLayer");
+                //hidIsRecommended
+                HiddenField hidIsRecommended = (HiddenField)e.Item.FindControl("hidIsRecommended");
                 string LitStyle = "<span style=\"display:inline-block;width:{0}px;\"></span>{1}{2}";
                 string LitImg1 = "<span class=\"folder-open\"></span>";
                 string LitImg2 = "<span class=\"folder-line\"></span>";
-
+                if (lbtnRecommended != null && hidIsRecommended.Value == "1")
+                {
+                    lbtnRecommended.Visible = false;
+                }
                 int classLayer = Convert.ToInt32(hidLayer.Value);
                 if (classLayer == 1)
                 {
@@ -97,6 +103,25 @@ namespace DTcms.Web.admin.article
             }
             AddAdminLog(DTEnums.ActionEnum.Edit.ToString(), "删除" + this.channel_name + "频道栏目分类数据"); //记录日志
             JscriptMsg("删除数据成功！", Utils.CombUrlTxt("category_list.aspx", "channel_id={0}", this.channel_id.ToString()), "Success");
+        }
+
+        protected void rptList_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Recommended")
+            {
+                BLL.article_category bll = new BLL.article_category();
+                //Model.article_category model = bll.GetModel(int.Parse(e.CommandArgument.ToString()));
+                bll.UpdateField(int.Parse(e.CommandArgument.ToString()), " IsRecommended=1 ");
+                JscriptMsg("设置成功！", Utils.CombUrlTxt("category_list.aspx", "channel_id={0}", this.channel_id.ToString()), "Success");
+            }
+            else if (e.CommandName == "CancelRecommended")
+            {
+                BLL.article_category bll = new BLL.article_category();
+                //Model.article_category model = bll.GetModel(int.Parse(e.CommandArgument.ToString()));
+                bll.UpdateField(int.Parse(e.CommandArgument.ToString()), " IsRecommended=0 ");
+                JscriptMsg("取消成功！", Utils.CombUrlTxt("category_list.aspx", "channel_id={0}", this.channel_id.ToString()), "Success");
+            }
+
         }
     }
 }

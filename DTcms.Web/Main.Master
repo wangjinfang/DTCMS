@@ -1,0 +1,175 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="DTcms.Web.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta content="企力办公" name="keywords" />
+    <meta content="企力办公" name="description" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>企力办公 - 性价比最高的办公用品商城</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <script src="scripts/commonJs/common.js"></script>
+    <script src="scripts/commonJs/jquery-1.8.2.min.js"></script>
+    <script src="scripts/commonJs/common.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $("#sjgm").hover(function () {
+                $("#pop-tel").show();
+            },
+                    function () {
+                        $("#pop-tel").hide();
+                    }
+                )
+        });
+    </script>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!--header start-->
+        <div class="headerWrap">
+            <div class="g-hd">
+                <!--header right start-->
+                <div class="g-hd-r">
+                    <div class="g-hd-r-text"><a href="#">登录</a><span class="mlr5">|</span><a href="#">注册</a></div>
+                    <!--search start-->
+                    <div class="g-hd-r-box">
+                        <div class="m-search">
+                            <div class="m-s-input">
+                                <ul class="label-s">
+                                    <li><a href="#">计算器</a></li>
+                                    <li><a href="#">订书钉</a></li>
+                                    <li><a href="#">订书机</a></li>
+                                </ul>
+                                <input type="text" class="s-input" value="搜索您需要的商品" style="color: #a9a9a9;" name="msg" onfocus="textFocus(this);" onblur="textBlur(this);">
+                            </div>
+                            <div class="m-s-btn">
+                                <input type="submit" class="s-submit" value="" />
+                            </div>
+                        </div>
+                        <div class="m-buytel" id="sjgm">
+                            <a href="#"><span class="buy-tel">手机购买</span></a>
+                            <!--pop div start-->
+                            <div class="pop-box d-none" id="pop-tel">
+                                <!--三角形箭头-->
+                                <div class="p-t-sjx"></div>
+                                <!--弹出层内容-->
+                                <div class="pop-tel">
+                                    <div class="p-t-top"></div>
+                                    <div class="p-t-con">
+                                        <ul class="ul-pop">
+                                            <li class="li1">
+                                                <!--图标-->
+                                                <div class="div-icon"><a href="#" title="手机APP"></a></div>
+                                                <h2><a href="#">手机APP</a></h2>
+                                                <h3>占容小 商品全 下单快</h3>
+                                                <div class="div-input">
+                                                    <input type="button" value="ios" />
+                                                </div>
+                                                <div class="div-input">
+                                                    <input type="button" value="Android">
+                                                </div>
+                                            </li>
+                                            <li class="li2">
+                                                <!--图标-->
+                                                <div class="div-icon"><a href="#" title="淘宝店"></a></div>
+                                                <h2><a href="#">淘宝店</a></h2>
+                                                <h3>担保交易更放心</h3>
+                                                <div class="div-input">
+                                                    <input type="button" value="进入" />
+                                                </div>
+                                                <div class="div-share"><a href="#" title="分享微博" class="share-sina"></a><a href="#" title="分享微博" class="share-qq"></a></div>
+                                            </li>
+                                            <li class="li3">
+                                                <!--图标-->
+                                                <div class="div-icon"><a href="#" title="微商城"></a></div>
+                                                <h2><a href="#">微商城</a></h2>
+                                                <h3>微信专享价是经常有</h3>
+                                                <div class="div-weixin">
+                                                    <img src="images/img-weixin.png" />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/pop div end-->
+                        </div>
+
+                    </div>
+                    <!--/search end-->
+                </div>
+                <!--/header right end-->
+                <!--header logo start-->
+                <div class="g-hd-logo">
+                    <a href="#"><span class="mr20">
+                        <img src="images/logo.png" /></span><span><img src="images/logo-title.png" /></span></a>
+                </div>
+                <!--/header logo end-->
+                <div class="clear"></div>
+                <!--menu start-->
+                <div class="menu">
+                    <div class="menu-l">全部商品分类</div>
+                    <div class="menu-r">
+                        <ul class="ul-nav">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#">省心搭配</a></li>
+                            <li><a href="#">Yes想要！</a></li>
+                            <li><a href="#">限时特卖</a></li>
+                            <li><a href="#">品牌直供</a></li>
+                            <li><a href="#">积分商城</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!--/menu end-->
+            </div>
+        </div>
+        <!--/header end-->
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <!--footer start-->
+        <div class="w1240">
+            <div class="indexbot">
+                <ul>
+                    <li class="li1">
+                        <div class="div-icon"></div>
+                        <div class="div-title">免费送货</div>
+                    </li>
+                    <li class="li2">
+                        <div class="div-icon"></div>
+                        <div class="div-title">免费开票</div>
+                    </li>
+                    <li class="li3">
+                        <div class="div-icon"></div>
+                        <div class="div-title">采购提报</div>
+                    </li>
+                    <li class="li4">
+                        <div class="div-icon"></div>
+                        <div class="div-title">绿色公开</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--/footer end-->
+        <div class="clear20"></div>
+        <!--footer start-->
+        <div class="w1240">
+            <div class="footer">
+                <div class="f-link">企力旗下网站：<a href="#">企力网</a>|<a href="#">企力淘宝网</a>|<a href="#">企力微商城</a>|<a href="#">企力微官网</a>|<a href="#">企力得力旗舰店</a>|<a href="#">企力耗材旗舰店</a></div>
+                <div class="f-corp">福州企力办公用品有限公司<a href="#">qilibg.com</a>闽ICP备14017195号-1</div>
+            </div>
+        </div>
+        <!--/footer end-->
+        <div class="clear20"></div>
+       <asp:ContentPlaceHolder ID="CphBottom1" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

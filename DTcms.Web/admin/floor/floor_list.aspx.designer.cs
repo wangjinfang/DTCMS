@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DTcms.Web.admin.article {
+namespace DTcms.Web.admin.floor {
     
     
-    public partial class category_list {
+    public partial class floor_list {
         
         /// <summary>
         /// form1 control.
@@ -22,15 +22,6 @@ namespace DTcms.Web.admin.article {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSave;
-        
-        /// <summary>
         /// btnDelete control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,24 @@ namespace DTcms.Web.admin.article {
         protected global::System.Web.UI.WebControls.LinkButton btnDelete;
         
         /// <summary>
+        /// txtKeywords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtKeywords;
+        
+        /// <summary>
+        /// lbtnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSearch;
+        
+        /// <summary>
         /// rptList control.
         /// </summary>
         /// <remarks>
@@ -47,5 +56,23 @@ namespace DTcms.Web.admin.article {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptList;
+        
+        /// <summary>
+        /// txtPageNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPageNum;
+        
+        /// <summary>
+        /// PageContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PageContent;
     }
 }
