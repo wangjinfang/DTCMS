@@ -492,7 +492,7 @@ namespace DTcms.DAL
         public DataTable GetChildList(int parent_id, int channel_id)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,channel_id,title,call_index,parent_id,class_list,class_layer,sort_id,link_url,img_url,content,seo_title,seo_keywords,seo_description from " + databaseprefix + "article_category");
+            strSql.Append("select id,channel_id,title,call_index,parent_id,class_list,class_layer,sort_id,link_url,img_url,content,seo_title,seo_keywords,seo_description,IsRecommended from " + databaseprefix + "article_category");
             strSql.Append(" where channel_id=" + channel_id + " and parent_id=" + parent_id + " order by sort_id asc,id desc");
             DataSet ds = DbHelperSQL.Query(strSql.ToString());
             return ds.Tables[0];
@@ -506,7 +506,7 @@ namespace DTcms.DAL
         public DataTable GetList(int parent_id, int channel_id)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,channel_id,title,call_index,parent_id,class_list,class_layer,sort_id,link_url,img_url,content,seo_title,seo_keywords,seo_description from " + databaseprefix + "article_category");
+            strSql.Append("select id,channel_id,title,call_index,parent_id,class_list,class_layer,sort_id,link_url,img_url,content,seo_title,seo_keywords,seo_description,IsRecommended from " + databaseprefix + "article_category");
             strSql.Append(" where channel_id=" + channel_id + " order by sort_id asc,id desc");
             DataSet ds = DbHelperSQL.Query(strSql.ToString());
             DataTable oldData = ds.Tables[0] as DataTable;
@@ -595,6 +595,7 @@ namespace DTcms.DAL
                 row["seo_title"] = dr[i]["seo_title"].ToString();
                 row["seo_keywords"] = dr[i]["seo_keywords"].ToString();
                 row["seo_description"] = dr[i]["seo_description"].ToString();
+                row["IsRecommended"] = dr[i]["IsRecommended"].ToString();
                 newData.Rows.Add(row);
                 //调用自身迭代
                 this.GetChilds(oldData, newData, int.Parse(dr[i]["id"].ToString()), channel_id);
