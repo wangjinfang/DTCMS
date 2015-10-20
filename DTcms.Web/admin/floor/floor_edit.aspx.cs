@@ -53,7 +53,8 @@ namespace DTcms.Web.admin.floor
             txtTitle.Text = model.title;
             txtcolor.Text = model.color;
             txtRemark.Text = model.remark;
-            rblStatus.SelectedValue = model.status;     
+            rblStatus.SelectedValue = model.status;
+            txtSortId.Text = model.sort_id.ToString();
         }
         #endregion
 
@@ -69,6 +70,7 @@ namespace DTcms.Web.admin.floor
             model.color = txtcolor.Text.Trim();
             model.remark = txtRemark.Text.Trim();
             model.status = rblStatus.SelectedValue;
+            model.sort_id = int.Parse(txtSortId.Text.Trim());
             
             if (bll.Add(model) > 0)
             {
@@ -91,6 +93,7 @@ namespace DTcms.Web.admin.floor
             model.color = txtcolor.Text.Trim();
             model.remark = txtRemark.Text.Trim();
             model.status = rblStatus.SelectedValue;
+            model.sort_id =int.Parse(txtSortId.Text.Trim());
             if (bll.Update(model))
             {
                 AddAdminLog(DTEnums.ActionEnum.Edit.ToString(), "修改楼层：" + model.title); //记录日志

@@ -155,5 +155,29 @@ namespace DTcms.Web.admin.floor
             JscriptMsg("删除成功" + sucCount + "条，失败" + errorCount + "条！",
                 Utils.CombUrlTxt("floor_list.aspx", "keywords={0}&&property={1}", this.keywords, this.property), "Success");
         }
+
+        //保存排序
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+           
+            BLL.floor bll = new BLL.floor();
+            Repeater rptList = new Repeater();
+
+            rptList = this.rptList;
+
+
+            for (int i = 0; i < rptList.Items.Count; i++)
+            {
+                int id = Convert.ToInt32(((HiddenField)rptList.Items[i].FindControl("hidId")).Value);
+                int sortId;
+                if (!int.TryParse(((TextBox)rptList.Items[i].FindControl("txtSortId")).Text.Trim(), out sortId))
+                {
+                    sortId = 99;
+                }
+                bll.UpdateField(id, "sort_id=" + sortId.ToString());
+            }
+            AddAdminLog(DTEnums.ActionEnum.Edit.ToString(), "保存楼层排序"); //记录日志
+            JscriptMsg("保存排序成功啦！", Utils.CombUrlTxt("floor_list.aspx", "keywords={0}&&property={1}", this.keywords, this.property), "Success");
+        }
     }
 }

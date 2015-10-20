@@ -31,6 +31,7 @@
                 <div class="l-list">
                     <ul class="icon-list">
                         <li><a class="add" href="floor_edit.aspx?action=<%=DTEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
+                        <li><asp:LinkButton ID="btnSave" runat="server" CssClass="save" onclick="btnSave_Click"><i></i><span>保存</span></asp:LinkButton></li>
                         <li><a class="all" href="javascript:;" onclick="checkAll(this);"><i></i><span>全选</span></a></li>
                         <li>
                             <asp:LinkButton ID="btnDelete" runat="server" CssClass="del" OnClientClick="return ExePostBack('btnDelete');" OnClick="btnDelete_Click"><i></i><span>删除</span></asp:LinkButton></li>
@@ -50,10 +51,11 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ltable">
                     <tr>
                         <th width="6%">选择</th>
-                        <th align="15%">楼层名称-标题</th>
+                        <th align="15%" align="center">楼层名称-标题</th>
                         <th width="6%" align="left">所属频道</th>
-                       <%-- <th width="10%" align="left">状态</th>--%>
+                        <th width="10%" align="left">状态</th>
                         <th width="15%" align="left">添加时间</th>
+                        <th align="center" width="15%">排序</th>
                         <th width="15%">操作</th>
                     </tr>
             </HeaderTemplate>
@@ -63,10 +65,12 @@
                         <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" />
                         <asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
                     </td>
-                    <td><a href="floor_edit.aspx?action=<%=DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%#Eval("floorname") %>-<%#Eval("title")%></a></td>
+                    <td align="center"><a href="floor_edit.aspx?action=<%=DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%#Eval("floorname") %>-<%#Eval("title")%></a></td>
                     <td><%#GetBelongChannelName(Eval("belongchannel").ToString())%></td>
-                  <%--  <td><%#Eval("status")=="0"?"正常":"暂停"%></td>--%>
+                    <td><%#Eval("status").ToString()=="0"?"正常":"暂停"%></td>
                     <td><%#string.Format("{0:g}",Eval("add_time"))%></td>
+                    <td align="center">
+                        <asp:TextBox ID="txtSortId" runat="server" Text='<%#Eval("sort_id")%>' CssClass="sort" onkeydown="return checkNumber(event);" /></td>
                     <td align="center">
                         <a href="floor_edit.aspx?action=<%=DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">编辑</a>
                     </td>

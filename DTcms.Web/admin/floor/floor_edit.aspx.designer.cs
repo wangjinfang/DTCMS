@@ -67,6 +67,15 @@ namespace DTcms.Web.admin.floor {
         protected global::System.Web.UI.WebControls.TextBox txtRemark;
         
         /// <summary>
+        /// txtSortId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSortId;
+        
+        /// <summary>
         /// rblStatus control.
         /// </summary>
         /// <remarks>

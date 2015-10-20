@@ -82,14 +82,20 @@
                     <asp:TextBox ID="txtRemark" runat="server" MaxLength="255" TextMode="MultiLine" CssClass="input"></asp:TextBox>
                 </dd>
             </dl>
-
+            <dl>
+                <dt>排序数字</dt>
+                <dd>
+                    <asp:TextBox ID="txtSortId" runat="server" CssClass="input small" datatype="n" sucmsg=" ">99</asp:TextBox>
+                    <span class="Validform_checktip">*数字，越小越向前</span>
+                </dd>
+            </dl>
             <dl>
                 <dt>显示状态</dt>
                 <dd>
                     <div class="rule-multi-radio">
                         <asp:RadioButtonList ID="rblStatus" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
                             <asp:ListItem Value="0" Selected="True">正常</asp:ListItem>
-                            <asp:ListItem Value="1">暂停</asp:ListItem>                       
+                            <asp:ListItem Value="1">暂停</asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
                 </dd>
